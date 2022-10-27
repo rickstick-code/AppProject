@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="D39FA2FA-7915-E88F-4260-93495B622ED1" name="Vorsatz">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:11:41 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="C1867D20-E41F-911D-02E9-EC5CDF8E93DC">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:11:54 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Bezeichnung" id="6124818D-0720-E709-8E14-B78E22739815">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:11:58 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Start_Datum" id="8AC52C86-8B27-C78C-D53C-6F8A2CD1E3F9">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:12:07 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Aktiv" id="37F9ED5B-932B-2597-20F6-93883C2ABE85">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:12:32 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID1" id="20049F97-2A08-06B9-B11E-1AE98FEC593F">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:19:44 UTC</createdTime>
+<generatorID>918ED629-7502-FCCC-EFFC-895C67E7453C</generatorID>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<referedAttribute>171DF602-C1AC-E2DD-9CEE-604A69511E35</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID2" id="74C0336A-F81A-63E6-D081-FC4B9C3A7105">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:20:19 UTC</createdTime>
+<generatorID>52DE160F-794A-B955-4901-42F80A87C94E</generatorID>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<referedAttribute>2D6787AF-93F1-BA5B-268E-924B31821848</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID3" id="82D4A97A-00EB-0F2E-2E48-35CDD4AD7655">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:20:59 UTC</createdTime>
+<generatorID>F3B96DF1-7CF1-820C-120D-E4013C544E75</generatorID>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<referedAttribute>E0821D9D-A980-BBCB-EE33-E88EC218F4D1</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID4" id="4BE33AD1-3D2F-B1FB-5F17-E991068FE0D0">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:21:38 UTC</createdTime>
+<generatorID>AF98EE44-0CBD-849C-0EEF-8084B9B9F9BC</generatorID>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<referedAttribute>D6F704A3-A28C-E197-ACCF-4ACD9A1E0B2F</referedAttribute>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zielmenge" id="70077EBE-B341-4956-13F1-BE7518C448AE">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:54:08 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9E8F4B5A-5283-2DDE-E970-7B94EB51EC5A" name="Vorsatz PK">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-10-27 12:11:57 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C1867D20-E41F-911D-02E9-EC5CDF8E93DC</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -7,7 +7,7 @@
 <item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
 </engineerTo>
 <identifying>false</identifying>
-<optionalSource>false</optionalSource>
+<optionalSource>true</optionalSource>
 <optionalTarget>false</optionalTarget>
 <sourceCardinality>*</sourceCardinality>
 <sourceEntity>50D2E816-C079-AC2C-345B-1F31788D5607</sourceEntity>

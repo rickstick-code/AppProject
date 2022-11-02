@@ -71,6 +71,16 @@
 <use>0</use>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Zielmenge" id="D6F32AF9-2FD1-0393-9DB8-0693B97FE90C">
+<createdBy>vanbockr20</createdBy>
+<createdTime>2022-11-02 13:28:23 UTC</createdTime>
+<ownerDesignName>ER-Modell</ownerDesignName>
+<engineerTo>
+<item key="DCCD9115-7623-CDF6-302A-529A86F17352" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="6C41DDB3-CA9E-3307-0042-7638A9B5DE23" name="Fortschritt PK">

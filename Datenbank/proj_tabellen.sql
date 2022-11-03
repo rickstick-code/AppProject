@@ -1,116 +1,116 @@
 use waltersd21;
 
+/*****************************************************
+	CREATE TABLES - 03.11.2022
+	GROUP: 3
+	MEMBER: Florian Waltersdorfer
+			Frederick Van Bockryck, 
+			Jenny Le
+*****************************************************/
+
+
 BEGIN TRANSACTION
 
-create table benutzer (
-	bid int not null identity(1,1),
-	benutzername varchar(100) not null,
-	email varchar(100) not null,
-	passwort varchar(100) not null,
-	aktiv bit not null default 1,
-	constraint pk_benutzer primary key (bid),
-	constraint uk_benutzer_benutzername unique (benutzername),
-	constraint uk_benutzer_email unique (email)
 
-	);
+DROP TABLE Vorsatz;
+DROP TABLE Fortschritt;
+DROP TABLE Metrik;
+DROP TABLE Aktivitaet;
+DROP TABLE Intervall;
+DROP TABLE Benutzergruppengruppen;
+DROP TABLE Gruppen;
+DROP TABLE Benutzergruppen;
 
 
-create table gruppen (
-	gid int not null identity(1,1),
-	bezeichnung varchar(100) not null,
-	code varchar(100) not null,
-	is_private bit not null default 1,
-	aktiv bit not null default 1,
-	constraint pk_gruppen primary key (gid),
-	constraint uk_gruppen_code unique (code)
-	);
+CREATE TABLE Benutzergruppen (
+	ID INT NOT NULL IDENTITY(1,1),
+	Benutzergruppenname VARCHAR(100) NOT NULL,
+	Email VARCHAR(100) NOT NULL,
+	Passwort VARCHAR(100) NOT NULL,
+	Aktiv BIT NOT NULL DEFAULT 1,
+	CONSTRAINT pk_Benutzergruppen PRIMARY KEY (ID),
+	CONSTRAINT uk_Benutzergruppen_Benutzergruppenname UNIQUE (Benutzergruppenname),
+	CONSTRAINT uk_Benutzergruppen_Email UNIQUE (Email)
+);
 
 
-create table benutzergruppen (
-	bid int not null,
-	gid int not null,
-	constraint pk_benutzergruppen primary key (bid,gid),
-	constraint fk_benutzergruppen_benutzer foreign key (bid) references benutzer(bid),
-	constraint fk_benutzergruppen_gruppen foreign key (gid) references gruppen(gid)
-	);
+CREATE TABLE Gruppen (
+	ID INT NOT NULL IDENTITY(1,1),
+	Bezeichnung VARCHAR(100) NOT NULL,
+	Code VARCHAR(100) NOT NULL,
+	IstPrivat BIT NOT NULL DEFAULT 1,
+	Aktiv BIT NOT NULL DEFAULT 1,
+	CONSTRAINT pk_Gruppen PRIMARY KEY (ID),
+	CONSTRAINT uk_Gruppen_Code UNIQUE (Code)
+);
 
 
-create table intervall (
-	id int not null identity(1,1),
-	bezeichnung varchar(100) not null,
-	anzahl smallint not null,
-	constraint pk_intervall primary key (id),
-	constraint uk_intervall_bezeichnung_anzahl unique (bezeichnung, anzahl)
-	);
+CREATE TABLE Benutzergruppengruppen (
+	IDBenutzer INT NOT NULL,
+	IDGruppe INT NOT NULL,
+	CONSTRAINT pk_Benutzergruppengruppen PRIMARY KEY (IDBenutzer, IDGruppe),
+	CONSTRAINT fk_Benutzergruppengruppen_Benutzergruppen FOREIGN KEY (IDBenutzer) REFERENCES Benutzergruppen(ID),
+	CONSTRAINT fk_Benutzergruppengruppen_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID)
+);
 
 
-create table aktivitaet (
-	id int not null identity(1,1),
-	bezeichnung varchar(100) not null,
-	constraint pk_aktivitaet primary key (id),
-	constraint uk_aktivitaet_bezeichnung unique (bezeichnung)
-	);
+CREATE TABLE Intervall (
+	ID INT NOT NULL IDENTITY(1,1),
+	Bezeichnung VARCHAR(100) NOT NULL,
+	Anzahl INT NOT NULL,
+	CONSTRAINT pk_Intervall PRIMARY KEY (ID),
+	CONSTRAINT uk_Intervall_Bezeichnung_Anzahl UNIQUE (Bezeichnung, Anzahl)
+);
 
 
-create table metrik (
-	id int not null identity(1,1),
-	bezeichnung varchar(100) not null,
-	einheit varchar(10) not null,
-	constraint pk_metrik primary key (id),
-	constraint uk_metrik_einheit unique (einheit)
-	);
+CREATE TABLE Aktivitaet (
+	ID INT NOT NULL IDENTITY(1,1),
+	Bezeichnung VARCHAR(100) NOT NULL,
+	CONSTRAINT pk_Aktivitaet PRIMARY KEY (ID),
+	CONSTRAINT uk_Aktivitaet_Bezeichnung UNIQUE (Bezeichnung)
+);
 
 
-create table fortschritt (
-	id int not null identity(1,1),
-	bid int not null,
-	datum date not null default sysdatetime(),
-	aktivitaet int not null,
-	metrik int not null,
-	constraint pk_fortschritt primary key (id),
-	constraint fk_fortschritt_benutzer foreign key (bid) references benutzer(bid),
-	constraint fk_fortschritt_aktivitaet foreign key (aktivitaet) references aktivitaet(id),
-	constraint fk_fortschritt_metrik foreign key (metrik) references metrik(id)
-	);
+CREATE TABLE Metrik (
+	ID INT NOT NULL IDENTITY(1,1),
+	Bezeichnung VARCHAR(100) NOT NULL,
+	Einheit VARCHAR(10) NOT NULL,
+	CONSTRAINT pk_Metrik PRIMARY KEY (ID),
+	CONSTRAINT uk_Metrik_Einheit UNIQUE (Einheit)
+);
 
 
-create table vorsatz (
-	id int not null identity(1,1),
-	bezeichnung varchar(100) not null,
-	gid int not null,
-	aktivitaet int not null,
-	intervall int not null,
-	start_datum date not null default sysdatetime(),
-	zielmenge int not null,
-	metrik int not null,
-	aktiv bit not null default 1,
-	constraint pk_vorsatz primary key (id),
-	constraint fk_vorsatz_gruppen foreign key (gid) references gruppen(gid),
-	constraint fk_vorsatz_aktivitaet foreign key (aktivitaet) references aktivitaet(id),
-	constraint fk_vorsatz_intervall foreign key (intervall) references intervall(id),
-	constraint fk_vorsatz_metrik foreign key (metrik) references metrik(id),
-	constraint ck_voratz_start_datum check (start_datum > '2022-11-01')
-	);
-
-COMMIT TRANSACTION
-
-GO
+CREATE TABLE Fortschritt (
+	ID INT NOT NULL IDENTITY(1,1),
+	IDBenutzer INT NOT NULL,
+	Datum DATE NOT NULL DEFAULT GETDATE(),
+	Aktivitaet INT NOT NULL,
+	Metrik INT NOT NULL,
+	CONSTRAINT pk_Fortschritt PRIMARY KEY (ID),
+	CONSTRAINT fk_Fortschritt_Benutzergruppen FOREIGN KEY (IDBenutzer) REFERENCES Benutzergruppen(ID),
+	CONSTRAINT fk_Fortschritt_Aktivitaet FOREIGN KEY (Aktivitaet) REFERENCES Aktivitaet(ID),
+	CONSTRAINT fk_Fortschritt_Metrik FOREIGN KEY (Metrik) REFERENCES Metrik(ID)
+);
 
 
+CREATE TABLE Vorsatz (
+	ID INT NOT NULL IDENTITY(1,1),
+	IDGruppe INT NOT NULL,
+	Bezeichnung VARCHAR(100) NOT NULL,
+	Aktivitaet INT NOT NULL,
+	Intervall INT NOT NULL,
+	Startdatum DATE NOT NULL DEFAULT GETDATE(),
+	Zielmenge INT NOT NULL,
+	Metrik INT NOT NULL,
+	Aktiv BIT NOT NULL DEFAULT 1,
+	CONSTRAINT pk_Vorsatz PRIMARY KEY (ID),
+	CONSTRAINT fk_Vorsatz_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID),
+	CONSTRAINT fk_Vorsatz_Aktivitaet FOREIGN KEY (Aktivitaet) REFERENCES Aktivitaet(ID),
+	CONSTRAINT fk_Vorsatz_Intervall FOREIGN KEY (Intervall) REFERENCES Intervall(ID),
+	CONSTRAINT fk_Vorsatz_Metrik FOREIGN KEY (Metrik) REFERENCES Metrik(ID),
+	--CONSTRAINT ck_Vorsatz_start_datum CHECK (Startdatum > '2022-11-01')
+);
 
-
-/*
-BEGIN TRANSACTION
-
-drop table vorsatz;
-drop table fortschritt;
-drop table metrik;
-drop table aktivitaet;
-drop table intervall;
-drop table benutzergruppen;
-drop table gruppen;
-drop table benutzer;
 
 COMMIT TRANSACTION
 GO
-*/

@@ -13,7 +13,7 @@ BEGIN TRANSACTION
 
 
 INSERT INTO Benutzer (Benutzername, Email, Passwort, Aktiv)
-VALUES	('Max_Mustermann', 'max.mustermann@test.com', '9D14F09C4F4', 1),
+VALUES	('Max_Mustermann', 'max.mustermann@test.com', 'ùÉ)â¶ÙhÆ§$f–œÏA€CMzïFh¡»Ÿ’Ü5uöç’¨:a:¬¨ tJ[_ð}¸‘.Sðƒ3{_', 1),
 		('Markus_Meier', 'markus.meier@test.com', 'EAC27BAC6', 1),
 		('Sabine_Sauer', 'sabine.sauer@test.com', 'EC8F1FD08A85', 0),
 		('Michael_Jack', 'michael.jack@test.com', 'QAC2755555', 1),
@@ -69,11 +69,17 @@ VALUES	(1, 'Ich gehe laufen', 1, 1, '2022-11-03 10:00', 5, 2, 1),
 		(4, 'Mehr Sport machen!', 3, 3, '2022-09-01 19:00', 1, 1, 0),
 		(5, 'Ich will ins Fitnessstudio', 4, 4, '2022-10-03 15:00', 2, 3, 1),
 		(6, '3 Liter trinken', 4, 5, '2022-08-05 09:00', 1, 4, 1),
-		(8, 'Wir sind Verwandte und laufen gern', 1, 6, '2022-12-01 10:00',  25, 2, 1),
-		(9, 'Wir sind Freunde und laufen gern', 1, 7, '2022-10-10 20:45',  25, 2, 1);
+		(8, 'Wir sind Verwandte und laufen gern', 1, 5, '2022-12-01 10:00',  25, 2, 1),
+		(9, 'Wir sind Freunde und laufen gern', 1, 2, '2022-10-10 20:45',  25, 2, 1);
 
-INSERT INTO Fortschritt (IDBenutzer, Datum, Aktivitaet, Metrik)
-VALUES (1, '2022-11-05', 1, 1)
+INSERT INTO Fortschritt (IDBenutzer, Datum, Aktivitaet, Metrik, Zielmenge)
+VALUES	(1, '2022-11-05', 1, 2, 2),
+		(2, '2022-10-15', 2, 4, 1),
+		(4, '2022-10-05', 3, 1, 1),
+		(5, '2022-11-02', 4, 3, 1),
+		(6, '2022-11-03', 4, 4, 5),
+		(7, '2022-12-15', 1, 2, 5),
+		(7, '2022-12-16', 1, 2, 5);
 
 
 COMMIT TRANSACTION

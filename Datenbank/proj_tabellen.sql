@@ -17,9 +17,10 @@ DROP TABLE Fortschritt;
 DROP TABLE Metrik;
 DROP TABLE Aktivitaet;
 DROP TABLE Intervall;
+DROP TABLE Benutzergruppen;
 DROP TABLE Benutzer;
 DROP TABLE Gruppen;
-DROP TABLE Benutzergruppen;
+
 
 
 CREATE TABLE Benutzer (
@@ -50,7 +51,7 @@ CREATE TABLE Benutzergruppen (
 	IDGruppe INT NOT NULL,
 	CONSTRAINT pk_Benutzergruppen PRIMARY KEY (IDBenutzer, IDGruppe),
 	CONSTRAINT fk_Benutzergruppen_Benutzer FOREIGN KEY (IDBenutzer) REFERENCES Benutzer(ID),
-	CONSTRAINT fk_Benutzerg_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID)
+	CONSTRAINT fk_Benutzergruppen_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID)
 );
 
 
@@ -86,6 +87,7 @@ CREATE TABLE Fortschritt (
 	Datum DATE NOT NULL DEFAULT GETDATE(),
 	Aktivitaet INT NOT NULL,
 	Metrik INT NOT NULL,
+	Zielmenge INT NOT NULL,
 	CONSTRAINT pk_Fortschritt PRIMARY KEY (ID),
 	CONSTRAINT fk_Fortschritt_Aktivitaet FOREIGN KEY (Aktivitaet) REFERENCES Aktivitaet(ID),
 	CONSTRAINT fk_Fortschritt_Metrik FOREIGN KEY (Metrik) REFERENCES Metrik(ID)

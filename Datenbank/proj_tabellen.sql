@@ -1,4 +1,4 @@
-use waltersd21;
+USE Taskapp;
 
 /*****************************************************
 	CREATE TABLES - 03.11.2022
@@ -17,20 +17,20 @@ DROP TABLE Fortschritt;
 DROP TABLE Metrik;
 DROP TABLE Aktivitaet;
 DROP TABLE Intervall;
-DROP TABLE Benutzergruppengruppen;
+DROP TABLE Benutzer;
 DROP TABLE Gruppen;
 DROP TABLE Benutzergruppen;
 
 
-CREATE TABLE Benutzergruppen (
+CREATE TABLE Benutzer (
 	ID INT NOT NULL IDENTITY(1,1),
-	Benutzergruppenname VARCHAR(100) NOT NULL,
+	Benutzername VARCHAR(100) NOT NULL,
 	Email VARCHAR(100) NOT NULL,
 	Passwort VARCHAR(100) NOT NULL,
 	Aktiv BIT NOT NULL DEFAULT 1,
-	CONSTRAINT pk_Benutzergruppen PRIMARY KEY (ID),
-	CONSTRAINT uk_Benutzergruppen_Benutzergruppenname UNIQUE (Benutzergruppenname),
-	CONSTRAINT uk_Benutzergruppen_Email UNIQUE (Email)
+	CONSTRAINT pk_Benutzer PRIMARY KEY (ID),
+	CONSTRAINT uk_Benutzer_Benutzer UNIQUE (Benutzername),
+	CONSTRAINT uk_Benutzern_Email UNIQUE (Email)
 );
 
 
@@ -45,12 +45,12 @@ CREATE TABLE Gruppen (
 );
 
 
-CREATE TABLE Benutzergruppengruppen (
+CREATE TABLE Benutzergruppen (
 	IDBenutzer INT NOT NULL,
 	IDGruppe INT NOT NULL,
-	CONSTRAINT pk_Benutzergruppengruppen PRIMARY KEY (IDBenutzer, IDGruppe),
-	CONSTRAINT fk_Benutzergruppengruppen_Benutzergruppen FOREIGN KEY (IDBenutzer) REFERENCES Benutzergruppen(ID),
-	CONSTRAINT fk_Benutzergruppengruppen_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID)
+	CONSTRAINT pk_Benutzergruppen PRIMARY KEY (IDBenutzer, IDGruppe),
+	CONSTRAINT fk_Benutzergruppen_Benutzer FOREIGN KEY (IDBenutzer) REFERENCES Benutzer(ID),
+	CONSTRAINT fk_Benutzerg_Gruppen FOREIGN KEY (IDGruppe) REFERENCES Gruppen(ID)
 );
 
 
@@ -87,7 +87,6 @@ CREATE TABLE Fortschritt (
 	Aktivitaet INT NOT NULL,
 	Metrik INT NOT NULL,
 	CONSTRAINT pk_Fortschritt PRIMARY KEY (ID),
-	CONSTRAINT fk_Fortschritt_Benutzergruppen FOREIGN KEY (IDBenutzer) REFERENCES Benutzergruppen(ID),
 	CONSTRAINT fk_Fortschritt_Aktivitaet FOREIGN KEY (Aktivitaet) REFERENCES Aktivitaet(ID),
 	CONSTRAINT fk_Fortschritt_Metrik FOREIGN KEY (Metrik) REFERENCES Metrik(ID)
 );
@@ -108,7 +107,6 @@ CREATE TABLE Vorsatz (
 	CONSTRAINT fk_Vorsatz_Aktivitaet FOREIGN KEY (Aktivitaet) REFERENCES Aktivitaet(ID),
 	CONSTRAINT fk_Vorsatz_Intervall FOREIGN KEY (Intervall) REFERENCES Intervall(ID),
 	CONSTRAINT fk_Vorsatz_Metrik FOREIGN KEY (Metrik) REFERENCES Metrik(ID),
-	--CONSTRAINT ck_Vorsatz_start_datum CHECK (Startdatum > '2022-11-01')
 );
 
 

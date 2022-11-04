@@ -13,7 +13,7 @@ BEGIN TRANSACTION
 
 
 INSERT INTO Benutzer (Benutzername, Email, Passwort, Aktiv)
-VALUES	('Max_Mustermann', 'max.mustermann@test.com', 'ùÉ)â¶ÙhÆ§$f–œÏA€CMzïFh¡»Ÿ’Ü5uöç’¨:a:¬¨ tJ[_ð}¸‘.Sðƒ3{_', 1),
+VALUES	('Max_Mustermann', 'max.mustermann@test.com', 'EC8F14108A85', 1),
 		('Markus_Meier', 'markus.meier@test.com', 'EAC27BAC6', 1),
 		('Sabine_Sauer', 'sabine.sauer@test.com', 'EC8F1FD08A85', 0),
 		('Michael_Jack', 'michael.jack@test.com', 'QAC2755555', 1),

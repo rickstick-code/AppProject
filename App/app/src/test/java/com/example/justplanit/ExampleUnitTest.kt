@@ -1,4 +1,4 @@
-package com.example.appproject
+package com.example.justplanit
 
 import org.junit.Test
 

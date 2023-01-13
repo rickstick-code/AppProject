@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_progress">Progress</string>
     <string name="title_achievements">Achievements</string>
+    <string name="home_resolution_text">Your current resolutions:</string>
+    <string name="home_resolution_create">NEW RESOLUTION</string>
+    <string name="progress_header">View your progress:</string>
+    <string name="resolution_header">Create a new resolution:</string>
+
 </resources>

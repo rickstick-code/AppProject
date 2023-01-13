@@ -7,17 +7,117 @@
     tools:context=".ui.progress.ProgressFragment">
 
     <TextView
-        android:id="@+id/text_progress"
-        android:layout_width="match_parent"
+        android:id="@+id/progress_header"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/title_progress"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/progress_header"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/progress_activity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="Activity"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_header" />
+
+    <TextView
+        android:id="@+id/progress_amount_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="Amount"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_activity_text"
+        app:layout_constraintStart_toEndOf="@+id/progress_activity_text"
+        app:layout_constraintTop_toTopOf="@+id/progress_activity_text" />
+
+    <TextView
+        android:id="@+id/progress_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:text="Date"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_amount_text"
+        app:layout_constraintStart_toEndOf="@+id/progress_amount_text"
+        app:layout_constraintTop_toTopOf="@+id/progress_amount_text" />
+
+    <Button
+        android:id="@+id/progress_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:insetTop="6dp"
+        android:insetBottom="6dp"
+        android:text="ADD"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_date"
+        app:layout_constraintStart_toEndOf="@+id/progress_date"
+        app:layout_constraintTop_toTopOf="@+id/progress_date"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <EditText
+        android:id="@+id/progress_activity"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_activity_text" />
+
+    <EditText
+        android:id="@+id/progress_amount"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="25"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_activity"
+        app:layout_constraintStart_toEndOf="@+id/progress_activity"
+        app:layout_constraintTop_toTopOf="@+id/progress_activity" />
+
+    <Spinner
+        android:id="@+id/progress_unit"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_amount"
+        app:layout_constraintStart_toEndOf="@+id/progress_amount"
+        app:layout_constraintTop_toTopOf="@+id/progress_amount" />
+
+    <EditText
+        android:id="@+id/progress_date"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_unit"
+        app:layout_constraintEnd_toEndOf="@+id/progress_date_text"
+        app:layout_constraintStart_toStartOf="@+id/progress_date_text"
+        app:layout_constraintTop_toTopOf="@+id/progress_unit" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/progress_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_activity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

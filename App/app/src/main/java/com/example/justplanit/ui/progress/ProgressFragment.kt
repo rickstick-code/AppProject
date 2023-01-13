@@ -28,10 +28,13 @@ class ProgressFragment : Fragment() {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        /*
         val textView: TextView = binding.textProgress
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+         */
         return root
     }
 

@@ -27,11 +27,14 @@ class AchievementsFragment : Fragment() {
 
         _binding = FragmentAchievementsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        /*
 
         val textView: TextView = binding.textAchievements
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+         */
         return root
     }
 

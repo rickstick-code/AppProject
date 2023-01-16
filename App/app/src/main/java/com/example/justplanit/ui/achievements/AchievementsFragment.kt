@@ -35,6 +35,8 @@ class AchievementsFragment : Fragment() {
         }
 
          */
+
+
         return root
     }
 

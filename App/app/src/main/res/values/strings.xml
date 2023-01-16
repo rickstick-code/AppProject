@@ -20,6 +20,6 @@
     <string name="add">ADD</string>
     <string name="date">Date</string>
     <string name="amount">Amount</string>
-    <string name="activity">Amount</string>
+    <string name="activity">Activity</string>
 
 </resources>

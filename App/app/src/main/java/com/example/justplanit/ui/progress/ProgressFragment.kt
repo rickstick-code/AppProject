@@ -1,5 +1,6 @@
 package com.example.justplanit.ui.progress
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.justplanit.ProgressAdapter
 import com.example.justplanit.R
+import androidx.room.Room
+import com.example.justplanit.Fortschritt
+import com.example.justplanit.R
+import com.example.justplanit.SqlDatabase
 import com.example.justplanit.databinding.FragmentProgressBinding
+import java.util.*
 
 class ProgressFragment : Fragment() {
 
@@ -27,6 +33,7 @@ class ProgressFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val dashboardViewModel =
             ViewModelProvider(this).get(ProgressViewModel::class.java)
 
@@ -42,6 +49,11 @@ class ProgressFragment : Fragment() {
 
          */
 
+        binding.progressAdd.setOnClickListener {
+            SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
+                Fortschritt(0, Date(),0,0, binding.progressAmount.text.toString().toInt())
+            )
+        }
         return root
     }
 

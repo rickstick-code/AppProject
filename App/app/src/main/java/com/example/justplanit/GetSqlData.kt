@@ -7,5 +7,8 @@ import androidx.room.OnConflictStrategy
 @Dao
 interface GetSqlData {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(aktivitaet: Aktivitaet)
+    fun insAktivitaet(aktivitaet: Aktivitaet)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insFortschritt(fortschritt: Fortschritt)
 }

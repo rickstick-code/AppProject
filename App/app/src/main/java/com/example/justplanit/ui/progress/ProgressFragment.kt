@@ -8,6 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.justplanit.ProgressAdapter
+import com.example.justplanit.R
 import com.example.justplanit.databinding.FragmentProgressBinding
 
 class ProgressFragment : Fragment() {
@@ -29,14 +33,14 @@ class ProgressFragment : Fragment() {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
+        // create recycler view
         /*
-        val textView: TextView = binding.textProgress
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val recyclerView = root.findViewById<RecyclerView>(R.id.progress_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = ProgressAdapter("Test")  //replace with progress class
 
          */
-
 
         return root
     }

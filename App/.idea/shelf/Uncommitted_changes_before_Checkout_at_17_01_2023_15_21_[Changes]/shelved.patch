@@ -1,0 +1,534 @@
+Index: app/src/main/java/com/example/justplanit/ui/progress/ProgressFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.justplanit.ui.progress\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Button\r\nimport android.widget.TextView\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.example.justplanit.databinding.FragmentProgressBinding\r\n\r\nclass ProgressFragment : Fragment() {\r\n\r\n    private var _binding: FragmentProgressBinding? = null\r\n\r\n    // This property is only valid between onCreateView and\r\n    // onDestroyView.\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        val dashboardViewModel =\r\n            ViewModelProvider(this).get(ProgressViewModel::class.java)\r\n\r\n        _binding = FragmentProgressBinding.inflate(inflater, container, false)\r\n        val root: View = binding.root\r\n\r\n        /*\r\n        val textView: TextView = binding.textProgress\r\n        dashboardViewModel.text.observe(viewLifecycleOwner) {\r\n            textView.text = it\r\n        }\r\n\r\n         */\r\n\r\n\r\n        return root\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ui/progress/ProgressFragment.kt b/app/src/main/java/com/example/justplanit/ui/progress/ProgressFragment.kt
+--- a/app/src/main/java/com/example/justplanit/ui/progress/ProgressFragment.kt	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/java/com/example/justplanit/ui/progress/ProgressFragment.kt	(date 1673964600208)
+@@ -8,6 +8,10 @@
+ import android.widget.TextView
+ import androidx.fragment.app.Fragment
+ import androidx.lifecycle.ViewModelProvider
++import androidx.recyclerview.widget.LinearLayoutManager
++import androidx.recyclerview.widget.RecyclerView
++import com.example.justplanit.ProgressAdapter
++import com.example.justplanit.R
+ import com.example.justplanit.databinding.FragmentProgressBinding
+ 
+ class ProgressFragment : Fragment() {
+@@ -29,14 +33,14 @@
+         _binding = FragmentProgressBinding.inflate(inflater, container, false)
+         val root: View = binding.root
+ 
++
++        // create recycler view
+         /*
+-        val textView: TextView = binding.textProgress
+-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+-            textView.text = it
+-        }
++        val recyclerView = root.findViewById<RecyclerView>(R.id.progress_recycler_view)
++        recyclerView.layoutManager = LinearLayoutManager(activity)
++        recyclerView.adapter = ProgressAdapter("Test")  //replace with progress class
+ 
+          */
+-
+ 
+         return root
+     }
+Index: app/src/main/res/drawable/ic_baseline_more_vert_24.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_baseline_more_vert_24.xml b/app/src/main/res/drawable/ic_baseline_more_vert_24.xml
+new file mode 100644
+--- /dev/null	(date 1650045610000)
++++ b/app/src/main/res/drawable/ic_baseline_more_vert_24.xml	(date 1650045610000)
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24"
++    android:tint="?attr/colorControlNormal">
++  <path
++      android:fillColor="@android:color/white"
++      android:pathData="M12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,10c-1.1,0 -2,0.9 -2,2s0.9,2 2,2 2,-0.9 2,-2 -0.9,-2 -2,-2zM12,16c-1.1,0 -2,0.9 -2,2s0.9,2 2,2 2,-0.9 2,-2 -0.9,-2 -2,-2z"/>
++</vector>
+Index: app/src/main/res/drawable/ic_baseline_delete_24.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_baseline_delete_24.xml b/app/src/main/res/drawable/ic_baseline_delete_24.xml
+new file mode 100644
+--- /dev/null	(date 1650045444000)
++++ b/app/src/main/res/drawable/ic_baseline_delete_24.xml	(date 1650045444000)
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24"
++    android:tint="?attr/colorControlNormal">
++  <path
++      android:fillColor="@android:color/white"
++      android:pathData="M6,19c0,1.1 0.9,2 2,2h8c1.1,0 2,-0.9 2,-2V7H6v12zM19,4h-3.5l-1,-1h-5l-1,1H5v2h14V4z"/>
++</vector>
+Index: app/src/main/java/com/example/justplanit/ViewResolutionActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.justplanit\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport com.example.justplanit.R\r\n\r\nclass ViewResolutionActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_view_resolution)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ViewResolutionActivity.kt b/app/src/main/java/com/example/justplanit/ViewResolutionActivity.kt
+--- a/app/src/main/java/com/example/justplanit/ViewResolutionActivity.kt	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/java/com/example/justplanit/ViewResolutionActivity.kt	(date 1673959212784)
+@@ -2,11 +2,21 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.widget.TextView
+ import com.example.justplanit.R
+ 
+ class ViewResolutionActivity : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_view_resolution)
++
++        val resolutionName = intent.getStringExtra("Resolution_id")
++
++        if (resolutionName == null) {
++            finish()
++        }
++
++        findViewById<TextView>(R.id.respro_header).text = resolutionName
++
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/justplanit/ui/achievements/AchievementsFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.justplanit.ui.achievements\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.TextView\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.example.justplanit.databinding.FragmentAchievementsBinding\r\n\r\nclass AchievementsFragment : Fragment() {\r\n\r\n    private var _binding: FragmentAchievementsBinding? = null\r\n\r\n    // This property is only valid between onCreateView and\r\n    // onDestroyView.\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        val notificationsViewModel =\r\n            ViewModelProvider(this).get(AchievementsViewModel::class.java)\r\n\r\n        _binding = FragmentAchievementsBinding.inflate(inflater, container, false)\r\n        val root: View = binding.root\r\n        /*\r\n\r\n        val textView: TextView = binding.textAchievements\r\n        notificationsViewModel.text.observe(viewLifecycleOwner) {\r\n            textView.text = it\r\n        }\r\n\r\n         */\r\n\r\n\r\n        return root\r\n    }\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ui/achievements/AchievementsFragment.kt b/app/src/main/java/com/example/justplanit/ui/achievements/AchievementsFragment.kt
+--- a/app/src/main/java/com/example/justplanit/ui/achievements/AchievementsFragment.kt	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/java/com/example/justplanit/ui/achievements/AchievementsFragment.kt	(date 1673960499844)
+@@ -1,12 +1,17 @@
+ package com.example.justplanit.ui.achievements
+ 
++import android.content.Intent
+ import android.os.Bundle
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+-import android.widget.TextView
++import android.widget.ArrayAdapter
++import android.widget.ListView
++import android.widget.Toast
+ import androidx.fragment.app.Fragment
+ import androidx.lifecycle.ViewModelProvider
++import com.example.justplanit.R
++import com.example.justplanit.ViewAchievementActivity
+ import com.example.justplanit.databinding.FragmentAchievementsBinding
+ 
+ class AchievementsFragment : Fragment() {
+@@ -36,6 +41,20 @@
+ 
+          */
+ 
++        // Creating and filling the ListView with achievements
++        val achievementList: ListView = root.findViewById(R.id.achievements_listview)
++        val achievements:Array<String> = arrayOf("Achievement 1","Achievement 2", "Achievement 3","Achievement 4")  // replace with achievements
++        val achievementAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,achievements)
++        achievementList.adapter = achievementAdapter
++
++        achievementList.setOnItemClickListener { adapterView, view, i, l ->
++            val intent = Intent(activity, ViewAchievementActivity::class.java)
++            intent.putExtra("Achievement_id",adapterView.getItemAtPosition(i).toString()) // instead if "12345" use id of resolution from database
++            activity?.startActivity(intent)
++        }
++
++
++
+ 
+         return root
+     }
+Index: app/src/main/java/com/example/justplanit/ViewAchievementActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.justplanit\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport android.widget.Button\r\nimport com.example.justplanit.R\r\n\r\nclass ViewAchievementActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_view_achievement)\r\n\r\n        findViewById<Button>(R.id.achievement_save).setOnClickListener {\r\n            finish()\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ViewAchievementActivity.kt b/app/src/main/java/com/example/justplanit/ViewAchievementActivity.kt
+--- a/app/src/main/java/com/example/justplanit/ViewAchievementActivity.kt	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/java/com/example/justplanit/ViewAchievementActivity.kt	(date 1673960549810)
+@@ -3,6 +3,7 @@
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
+ import android.widget.Button
++import android.widget.TextView
+ import com.example.justplanit.R
+ 
+ class ViewAchievementActivity : AppCompatActivity() {
+@@ -10,6 +11,17 @@
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_view_achievement)
+ 
++
++        val achievementName = intent.getStringExtra("Achievement_id")
++
++        if (achievementName == null) {
++            //finish()
++        }
++
++        findViewById<TextView>(R.id.achievement_header).text = achievementName
++
++
++
+         findViewById<Button>(R.id.achievement_save).setOnClickListener {
+             finish()
+         }
+Index: app/src/main/res/layout/activity_view_resolution.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ViewResolutionActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_header\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"resolution name\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_date_text\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"64dp\"\r\n        android:text=\"@string/active_since\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/respro_header\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_goal_text\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:text=\"@string/goal\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/respro_date_text\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_date\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"32dp\"\r\n        android:text=\"starting date\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/respro_date_text\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/respro_date_text\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/respro_date_text\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_goal\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"activity, unit/ frequency\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/respro_goal_text\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/respro_date\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/respro_goal_text\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/respro_add\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"48dp\"\r\n        android:text=\"@string/progress_add\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/respro_goal_text\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/respro_end\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:text=\"@string/resolution_end\"\r\n        app:layout_constraintBottom_toBottomOf=\"@+id/respro_add\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/respro_add\" />\r\n\r\n    <ScrollView\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/respro_note_text\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/respro_add\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\" />\r\n    </ScrollView>\r\n\r\n    <TextView\r\n        android:id=\"@+id/respro_note_text\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginBottom=\"8dp\"\r\n        android:text=\"@string/note\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/respro_note\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/respro_note\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"128dp\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"space for comment\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_view_resolution.xml b/app/src/main/res/layout/activity_view_resolution.xml
+--- a/app/src/main/res/layout/activity_view_resolution.xml	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/res/layout/activity_view_resolution.xml	(date 1673960763398)
+@@ -79,23 +79,14 @@
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="@+id/respro_add" />
+ 
+-    <ScrollView
+-        android:layout_width="0dp"
++    <ListView
++        android:id="@+id/respro_listview"
++        android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_marginStart="8dp"
+         android:layout_marginTop="16dp"
+-        android:layout_marginEnd="8dp"
+         android:layout_marginBottom="16dp"
+         app:layout_constraintBottom_toTopOf="@+id/respro_note_text"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/respro_add">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="vertical" />
+-    </ScrollView>
++        app:layout_constraintTop_toBottomOf="@+id/respro_add" />
+ 
+     <TextView
+         android:id="@+id/respro_note_text"
+Index: app/src/main/res/layout/activity_view_achievement.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ViewAchievementActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/achievement_header\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"achievementname\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/achievement_image\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"200dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/achievement_header\"\r\n        app:srcCompat=\"@drawable/ic_launcher_background\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/achievement_image_change\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:text=\"ADD/CHANGE PHOTO\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/achievement_image\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/achievement_location\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"photo taken at\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/achievement_image_change\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/achievement_date\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:text=\"achieved on date\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"@+id/achievement_location\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/achievement_note_text\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginBottom=\"8dp\"\r\n        android:text=\"@string/note\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/achievement_note\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/achievement_note\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"128dp\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"32dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"space for comment\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/achievement_save\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/achievement_save\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:text=\"@string/save\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_view_achievement.xml b/app/src/main/res/layout/activity_view_achievement.xml
+--- a/app/src/main/res/layout/activity_view_achievement.xml	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/res/layout/activity_view_achievement.xml	(date 1673960572232)
+@@ -10,6 +10,7 @@
+         android:id="@+id/achievement_header"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
+         android:text="achievementname"
+         android:textSize="24sp"
+         app:layout_constraintEnd_toEndOf="parent"
+Index: app/src/main/java/com/example/justplanit/ui/home/HomeFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.justplanit.ui.home\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.util.Log\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Button\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.lifecycle.ViewModelProvider\r\nimport com.example.justplanit.R\r\nimport com.example.justplanit.databinding.FragmentHomeBinding\r\nimport com.example.justplanit.CreateResolutionActivity\r\n\r\nclass HomeFragment : Fragment() {\r\n\r\n    private var _binding: FragmentHomeBinding? = null\r\n\r\n    // This property is only valid between onCreateView and\r\n    // onDestroyView.\r\n    private val binding get() = _binding!!\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View {\r\n        val homeViewModel =\r\n            ViewModelProvider(this).get(HomeViewModel::class.java)\r\n        _binding = FragmentHomeBinding.inflate(inflater, container, false)\r\n        val root: View = binding.root\r\n\r\n        /*val textView: TextView = binding.textHome\r\n        homeViewModel.text.observe(viewLifecycleOwner) {\r\n            textView.text = it\r\n        }\r\n\r\n         */\r\n\r\n        val button: Button = root.findViewById(R.id.home_resolution_create)\r\n        button.setOnClickListener {\r\n            val intent = Intent(activity, CreateResolutionActivity::class.java)\r\n            activity?.startActivity(intent)\r\n        }\r\n\r\n        return root\r\n\r\n    }\r\n\r\n\r\n    override fun onDestroyView() {\r\n        super.onDestroyView()\r\n        _binding = null\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ui/home/HomeFragment.kt b/app/src/main/java/com/example/justplanit/ui/home/HomeFragment.kt
+--- a/app/src/main/java/com/example/justplanit/ui/home/HomeFragment.kt	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/java/com/example/justplanit/ui/home/HomeFragment.kt	(date 1673960270085)
+@@ -6,15 +6,17 @@
+ import android.view.LayoutInflater
+ import android.view.View
+ import android.view.ViewGroup
+-import android.widget.Button
++import android.widget.*
+ import androidx.fragment.app.Fragment
+ import androidx.lifecycle.ViewModelProvider
+ import com.example.justplanit.R
+ import com.example.justplanit.databinding.FragmentHomeBinding
+ import com.example.justplanit.CreateResolutionActivity
++import com.example.justplanit.ViewResolutionActivity
+ 
+ class HomeFragment : Fragment() {
+ 
++
+     private var _binding: FragmentHomeBinding? = null
+ 
+     // This property is only valid between onCreateView and
+@@ -38,12 +40,26 @@
+ 
+          */
+ 
++        // Button for creating a new resolution
+         val button: Button = root.findViewById(R.id.home_resolution_create)
+         button.setOnClickListener {
+             val intent = Intent(activity, CreateResolutionActivity::class.java)
+             activity?.startActivity(intent)
+         }
+ 
++        // Creating and filling the ListView with current resolutions
++        val resolutionList:ListView = root.findViewById(R.id.home_listview)
++        val resolutions:Array<String> = arrayOf("running","drinking","testing")  // replace with active resolutions in database
++        val resolutionAdapter:ArrayAdapter<String>  = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,resolutions)
++        resolutionList.adapter = resolutionAdapter
++
++        resolutionList.setOnItemClickListener { adapterView, view, i, l ->
++            val intent = Intent(activity,ViewResolutionActivity::class.java)
++            intent.putExtra("Resolution_id",adapterView.getItemAtPosition(i).toString()) // instead if "12345" use id of resolution from database
++            activity?.startActivity(intent)
++        }
++
++
+         return root
+ 
+     }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'org.jetbrains.kotlin.android'\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.justplanit'\r\n    compileSdk 32\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.justplanit\"\r\n        minSdk 21\r\n        targetSdk 32\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = '1.8'\r\n    }\r\n    buildFeatures {\r\n        viewBinding true\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.core:core-ktx:1.7.0'\r\n    implementation 'androidx.appcompat:appcompat:1.5.1'\r\n    implementation 'com.google.android.material:material:1.7.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'\r\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'\r\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/build.gradle	(date 1673962343403)
+@@ -48,4 +48,6 @@
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
++    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
++    implementation "androidx.recyclerview:recyclerview:1.2.1"
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.home.HomeFragment\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/home_motd\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"16dp\"\r\n        android:layout_marginBottom=\"64dp\"\r\n        android:text=\"Message of the day here!\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/home_resolution_text\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/home_resolution_text\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"64dp\"\r\n        android:text=\"@string/home_resolution_text\"\r\n        android:textSize=\"20sp\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/scrollView2\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/home_motd\" />\r\n\r\n    <ScrollView\r\n        android:id=\"@+id/scrollView2\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"64dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/home_resolution_create\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/home_resolution_text\"\r\n        tools:ignore=\"SpeakableTextPresentCheck\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\" />\r\n    </ScrollView>\r\n\r\n    <Button\r\n        android:id=\"@+id/home_resolution_create\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        android:text=\"@string/home_resolution_create\"\r\n        android:textColor=\"@color/white\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/scrollView2\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+--- a/app/src/main/res/layout/fragment_home.xml	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/res/layout/fragment_home.xml	(date 1673956391043)
+@@ -24,43 +24,31 @@
+         android:id="@+id/home_resolution_text"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
+         android:layout_marginTop="64dp"
+         android:text="@string/home_resolution_text"
+         android:textSize="20sp"
+-        app:layout_constraintStart_toStartOf="@+id/scrollView2"
++        app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/home_motd" />
+ 
+-    <ScrollView
+-        android:id="@+id/scrollView2"
+-        android:layout_width="0dp"
++    <ListView
++        android:id="@+id/home_listview"
++        android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_marginStart="8dp"
+         android:layout_marginTop="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:layout_marginBottom="64dp"
++        android:layout_marginBottom="8dp"
+         app:layout_constraintBottom_toTopOf="@+id/home_resolution_create"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/home_resolution_text"
+-        tools:ignore="SpeakableTextPresentCheck">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="vertical" />
+-    </ScrollView>
++        app:layout_constraintTop_toBottomOf="@+id/home_resolution_text" />
+ 
+     <Button
+         android:id="@+id/home_resolution_create"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+         android:layout_marginBottom="16dp"
+         android:text="@string/home_resolution_create"
+         android:textColor="@color/white"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
++        app:layout_constraintStart_toStartOf="parent" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_achievements.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.achievements.AchievementsFragment\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/achievements_header\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:text=\"@string/title_achievements\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <ScrollView\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"8dp\"\r\n        android:layout_marginTop=\"64dp\"\r\n        android:layout_marginEnd=\"8dp\"\r\n        android:layout_marginBottom=\"16dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/achievements_header\">\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\" />\r\n    </ScrollView>\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_achievements.xml b/app/src/main/res/layout/fragment_achievements.xml
+--- a/app/src/main/res/layout/fragment_achievements.xml	(revision 2ea25ddc43dfc0e370d03ed7fa62946957fc65c2)
++++ b/app/src/main/res/layout/fragment_achievements.xml	(date 1673959459004)
+@@ -17,22 +17,13 @@
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
+-    <ScrollView
+-        android:layout_width="0dp"
++    <ListView
++        android:id="@+id/achievements_listview"
++        android:layout_width="match_parent"
+         android:layout_height="0dp"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="64dp"
+-        android:layout_marginEnd="8dp"
++        android:layout_marginTop="32dp"
+         android:layout_marginBottom="16dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/achievements_header">
+-
+-        <LinearLayout
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:orientation="vertical" />
+-    </ScrollView>
++        app:layout_constraintTop_toBottomOf="@+id/achievements_header" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/item_progress.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_progress.xml b/app/src/main/res/layout/item_progress.xml
+new file mode 100644
+--- /dev/null	(date 1673963659701)
++++ b/app/src/main/res/layout/item_progress.xml	(date 1673963659701)
+@@ -0,0 +1,45 @@
++<?xml version="1.0" encoding="utf-8"?>
++
++<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    app:cardElevation="8dp"
++    android:layout_margin="8dp">
++
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal">
++
++        <TextView
++            android:id="@+id/item_progress_activity"
++            android:layout_width="170dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="0"
++            android:text="running" />
++
++        <TextView
++            android:id="@+id/item_progress_amount"
++            android:layout_width="80dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="0"
++            android:text="5 km" />
++
++        <TextView
++            android:id="@+id/item_progress_date"
++            android:layout_width="120dp"
++            android:layout_height="match_parent"
++            android:layout_weight="0"
++            android:text="23rd, Dec 2023" />
++
++        <ImageView
++            android:id="@+id/item_progress_delete"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_weight="0"
++            android:scaleType="fitEnd"
++            app:srcCompat="@drawable/ic_baseline_delete_24" />
++    </LinearLayout>
++</com.google.android.material.card.MaterialCardView>
+\ No newline at end of file
+Index: app/src/main/java/com/example/justplanit/ProgressAdapter.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/justplanit/ProgressAdapter.kt b/app/src/main/java/com/example/justplanit/ProgressAdapter.kt
+new file mode 100644
+--- /dev/null	(date 1673964448699)
++++ b/app/src/main/java/com/example/justplanit/ProgressAdapter.kt	(date 1673964448699)
+@@ -0,0 +1,35 @@
++package com.example.justplanit
++
++import android.view.LayoutInflater
++import android.view.View
++import android.view.ViewGroup
++import android.view.ViewParent
++import android.widget.ImageView
++import android.widget.TextView
++import androidx.recyclerview.widget.RecyclerView
++
++class ProgressAdapter(val test:String): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
++
++    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
++        fun bindItem(test:String){      // bindItem has to contain the progress table instead of test
++            itemView.findViewById<TextView>(R.id.item_progress_activity)
++            itemView.findViewById<TextView>(R.id.item_progress_amount)
++            itemView.findViewById<TextView>(R.id.item_progress_date)
++            itemView.findViewById<ImageView>(R.id.item_progress_delete)
++        }
++    }
++
++    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
++        val inflater = LayoutInflater.from(parent.context)
++        val progressItemView = inflater.inflate(R.layout.item_progress, parent, false)
++        return ViewHolder(progressItemView)
++    }
++
++    override fun getItemCount(): Int {
++        TODO("Not yet implemented") // (return progress size)
++    }
++
++    override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
++        holder.bindItem("asdasd") //replace with progress id
++    }
++}
+\ No newline at end of file

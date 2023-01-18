@@ -39,13 +39,11 @@ class ProgressFragment : Fragment() {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.progressAdd.setOnClickListener {
-            setAdapter(root.findViewById<RecyclerView>(R.id.progress_recycler_view))
-        }
+
+        setAdapter(root.findViewById(R.id.progress_recycler_view))
 
         root.findViewById<Button>(R.id.progress_add).setOnClickListener {
             Toast.makeText(requireContext().applicationContext,"A new resolution was created",Toast.LENGTH_SHORT).show()
-
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
                 Fortschritt(
                     datum = Date(),

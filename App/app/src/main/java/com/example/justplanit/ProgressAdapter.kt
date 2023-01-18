@@ -19,7 +19,7 @@ class ProgressAdapter(var fortschritte: List<Fortschritt>): RecyclerView.Adapter
             itemView.findViewById<TextView>(R.id.item_progress_amount).text =
                 fortschritt.zielmenge.toString()
             itemView.findViewById<TextView>(R.id.item_progress_date).text =
-                Converter().toSimpleString(fortschritt.datum)
+                Converter().dateToString(fortschritt.datum)
         }
     }
 

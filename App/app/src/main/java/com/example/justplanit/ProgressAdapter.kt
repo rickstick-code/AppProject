@@ -3,15 +3,10 @@ package com.example.justplanit
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class ProgressAdapter(val progressList: List<Fortschritt>): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
-
-    //private var progressList = listOf<Fortschritt>()
+class ProgressAdapter(val progressList: List<Fortschritt>): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bindItem(progress:Fortschritt){

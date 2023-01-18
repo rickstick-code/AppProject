@@ -13,6 +13,13 @@ interface GetSqlData {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insFortschritt(fortschritt: Fortschritt)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insVorsatz(vorsatz: Vorsatz)
+
     @Query("SELECT * FROM Fortschritt")
     fun selFortschritt(): List<Fortschritt>
+
+    @Query("SELECT bezeichnung FROM Vorsatz WHERE aktiv = true")
+    fun selVorsatzBez(): Array<String>?
+
 }

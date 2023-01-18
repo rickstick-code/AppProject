@@ -6,16 +6,19 @@ import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class ProgressAdapter(val test:String): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
+class ProgressAdapter(val progressList: List<Fortschritt>): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
+
+    //private var progressList = listOf<Fortschritt>()
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun bindItem(test:String){      // bindItem has to contain the progress table instead of test
-            itemView.findViewById<TextView>(R.id.item_progress_activity)
-            itemView.findViewById<TextView>(R.id.item_progress_amount)
-            itemView.findViewById<TextView>(R.id.item_progress_date)
-            itemView.findViewById<ImageView>(R.id.item_progress_delete)
+        fun bindItem(progress:Fortschritt){
+            itemView.findViewById<TextView>(R.id.item_progress_activity).text = progress.aktivitaet.toString()
+            itemView.findViewById<TextView>(R.id.item_progress_amount).text = progress.zielmenge.toString() + " " +  progress.metrik
+            itemView.findViewById<TextView>(R.id.item_progress_date).text = progress.datum.toString()
+            //itemView.findViewById<ImageView>(R.id.item_progress_delete).setOnClickListener { }
         }
     }
 
@@ -26,10 +29,11 @@ class ProgressAdapter(val test:String): RecyclerView.Adapter<ProgressAdapter.Vie
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented") // (return progress size)
+        return progressList.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
-        holder.bindItem("asdasd") //replace with progress id
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val progress = progressList[position]
+        holder.bindItem(progress)
     }
 }

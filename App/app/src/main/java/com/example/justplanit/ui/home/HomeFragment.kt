@@ -9,15 +9,16 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.justplanit.R
+import androidx.room.Room
+import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentHomeBinding
-import com.example.justplanit.CreateResolutionActivity
-import com.example.justplanit.ViewResolutionActivity
+import java.util.Date
 
 class HomeFragment : Fragment() {
 
 
     private var _binding: FragmentHomeBinding? = null
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -49,7 +50,18 @@ class HomeFragment : Fragment() {
 
         // Creating and filling the ListView with current resolutions
         val resolutionList:ListView = root.findViewById(R.id.home_listview)
-        val resolutions:Array<String> = arrayOf("running","drinking","testing")  // replace with active resolutions in database
+
+
+        //database tests
+        //val db = SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData
+        //val db2 = Room.databaseBuilder(requireContext().applicationContext, SqlDatabase::class.java, "db").build()
+        //db.insVorsatz(Vorsatz(0,"spazieren gehen",2,3,Date(),6,2,true))
+        //db.insVorsatz(Vorsatz(0,"fitnessstudio gehen",2,3,Date(),6,2,true))
+        //val resolutions2: Array<String> =  db2.getSqlData.selVorsatzBez() ?: arrayOf("asv","asdasd") //not working, maybe be
+        //Log.e("test",resolutions2[0])
+
+
+        val resolutions: Array<String> = arrayOf("asdsdfa","asddsggdfs")
         val resolutionAdapter:ArrayAdapter<String>  = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,resolutions)
         resolutionList.adapter = resolutionAdapter
 

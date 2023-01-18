@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.justplanit.ProgressAdapter
-import com.example.justplanit.Fortschritt
-import com.example.justplanit.R
-import com.example.justplanit.SqlDatabase
+import androidx.room.Room
+import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentProgressBinding
 import java.util.*
 
@@ -36,10 +34,32 @@ class ProgressFragment : Fragment() {
         val root: View = binding.root
 
 
+
+        //sample data for recyclerView
+        val progressSample = mutableListOf<Fortschritt>()
+        progressSample.add(Fortschritt(0,Date(),1,1,1))
+        progressSample.add(Fortschritt(1,Date(),2,2,5))
+        progressSample.add(Fortschritt(2,Date(),2,2,5))
+        progressSample.add(Fortschritt(3,Date(),2,2,5))
+        progressSample.add(Fortschritt(4,Date(),2,2,5))
+        progressSample.add(Fortschritt(5,Date(),2,2,5))
+        progressSample.add(Fortschritt(6,Date(),2,2,5))
+        progressSample.add(Fortschritt(7,Date(),2,2,5))
+        progressSample.add(Fortschritt(8,Date(),2,2,5))
+        progressSample.add(Fortschritt(9,Date(),2,2,5))
+        progressSample.add(Fortschritt(10,Date(),2,2,5))
+        progressSample.add(Fortschritt(11,Date(),2,2,5))
+        progressSample.add(Fortschritt(12,Date(),2,2,5))
+        progressSample.add(Fortschritt(13,Date(),2,2,5))
+        progressSample.add(Fortschritt(14,Date(),2,2,5))
+        progressSample.add(Fortschritt(15,Date(),2,2,5))
+
+
+
         // create recycler view
         val recyclerView = root.findViewById<RecyclerView>(R.id.progress_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = ProgressAdapter("Test")  //replace with progress class
+        recyclerView.adapter = ProgressAdapter(progressSample) //   GetSqlData.selFortschritt() ?
 
 
         binding.progressAdd.setOnClickListener {

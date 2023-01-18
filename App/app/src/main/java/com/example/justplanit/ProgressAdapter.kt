@@ -3,19 +3,23 @@ package com.example.justplanit
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.time.format.DateTimeFormatter
+import java.util.*
 
-class ProgressAdapter(val test:String): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
+class ProgressAdapter(var fortschritte: List<Fortschritt>): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() { // add progress class
 
-    class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun bindItem(test:String){      // bindItem has to contain the progress table instead of test
-            itemView.findViewById<TextView>(R.id.item_progress_activity)
-            itemView.findViewById<TextView>(R.id.item_progress_amount)
-            itemView.findViewById<TextView>(R.id.item_progress_date)
-            itemView.findViewById<ImageView>(R.id.item_progress_delete)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindItem(fortschritt: Fortschritt) {
+            itemView.findViewById<TextView>(R.id.item_progress_id).text =
+                fortschritt.id.toString()
+            itemView.findViewById<TextView>(R.id.item_progress_activity).text =
+                fortschritt.aktivitaet.toString()
+            itemView.findViewById<TextView>(R.id.item_progress_amount).text =
+                fortschritt.zielmenge.toString()
+            itemView.findViewById<TextView>(R.id.item_progress_date).text =
+                Converter().toSimpleString(fortschritt.datum)
         }
     }
 
@@ -26,10 +30,11 @@ class ProgressAdapter(val test:String): RecyclerView.Adapter<ProgressAdapter.Vie
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented") // (return progress size)
+        return fortschritte.count()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
-        holder.bindItem("asdasd") //replace with progress id
+        holder.bindItem(fortschritte[postion])
     }
+
 }

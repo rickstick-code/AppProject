@@ -2,9 +2,11 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    app:cardBackgroundColor="#FFFFFF"
     app:cardElevation="8dp">
 
 
@@ -65,7 +67,8 @@
             android:layout_gravity="center"
             android:layout_weight="0"
             android:scaleType="fitEnd"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
+            app:srcCompat="@drawable/ic_baseline_data_usage_24"
+            tools:srcCompat="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

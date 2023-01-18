@@ -1,30 +1,16 @@
 package com.example.justplanit.ui.progress
 
-<<<<<<< Updated upstream
-import android.content.Context
-=======
-import android.graphics.Picture
->>>>>>> Stashed changes
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-<<<<<<< Updated upstream
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
-=======
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
->>>>>>> Stashed changes
 import com.example.justplanit.Fortschritt
 import com.example.justplanit.ProgressAdapter
 import com.example.justplanit.R
@@ -53,14 +39,13 @@ class ProgressFragment : Fragment() {
         _binding = FragmentProgressBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-<<<<<<< Updated upstream
         binding.progressAdd.setOnClickListener {
-=======
-        setAdapter(root.findViewById<RecyclerView>(R.id.progress_recycler_view))
+            setAdapter(root.findViewById<RecyclerView>(R.id.progress_recycler_view))
+        }
 
         root.findViewById<Button>(R.id.progress_add).setOnClickListener {
             Toast.makeText(requireContext().applicationContext,"A new resolution was created",Toast.LENGTH_SHORT).show()
->>>>>>> Stashed changes
+
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
                 Fortschritt(
                     datum = Date(),

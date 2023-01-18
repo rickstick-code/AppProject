@@ -6,12 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.justplanit.R
 import com.example.justplanit.databinding.FragmentHomeBinding
 import com.example.justplanit.CreateResolutionActivity
+import com.example.justplanit.ViewResolutionActivity
 
 class HomeFragment : Fragment() {
 
@@ -44,20 +47,17 @@ class HomeFragment : Fragment() {
             activity?.startActivity(intent)
         }
 
-<<<<<<< Updated upstream
-=======
         // Creating and filling the ListView with current resolutions
-        val resolutionList:ListView = root.findViewById(R.id.home_listview)
+        val resolutionList: ListView = root.findViewById(R.id.scrollView2)
         val resolutions:Array<String> = arrayOf("running","drinking","testing")  // replace with active resolutions in database
-        val resolutionAdapter:ArrayAdapter<String>  = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,resolutions)
+        val resolutionAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,resolutions)
         resolutionList.adapter = resolutionAdapter
 
         resolutionList.setOnItemClickListener { adapterView, view, i, l ->
-            val intent = Intent(activity,ViewResolutionActivity::class.java)
+            val intent = Intent(activity, ViewResolutionActivity::class.java)
             intent.putExtra("Resolution_id",adapterView.getItemAtPosition(i).toString()) // instead if "12345" use id of resolution from database
             activity?.startActivity(intent)
         }
->>>>>>> Stashed changes
         return root
 
     }

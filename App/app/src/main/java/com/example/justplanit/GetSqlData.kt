@@ -21,4 +21,10 @@ interface GetSqlData {
 
     @Query("SELECT id FROM Metrik WHERE Bezeichnung=:string LIMIT 1 ")
     fun selMetrik(string:String): Int
+
+    @Query("SELECT einheit FROM Metrik WHERE id=:id LIMIT 1 ")
+    fun selMetrik(id:Int): String
+
+    @Query("SELECT * FROM Metrik")
+    fun selMetrik():  List<Metrik>
 }

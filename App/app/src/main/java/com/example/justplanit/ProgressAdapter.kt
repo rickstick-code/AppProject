@@ -1,9 +1,11 @@
 package com.example.justplanit
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -18,6 +20,8 @@ class ProgressAdapter(var fortschritte: List<Fortschritt>): RecyclerView.Adapter
                 fortschritt.aktivitaet.toString()
             itemView.findViewById<TextView>(R.id.item_progress_amount).text =
                 fortschritt.zielmenge.toString()
+            itemView.findViewById<TextView>(R.id.item_progress_metric).text =
+                SqlDatabase.getDatabase(itemView.context).getSqlData.selMetrik(fortschritt.metrik)
             itemView.findViewById<TextView>(R.id.item_progress_date).text =
                 Converter().dateToString(fortschritt.datum)
         }

@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        ExampleData(this).create()
+        ExampleData(this).create() // Debug Example Data
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 

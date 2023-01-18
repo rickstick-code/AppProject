@@ -17,7 +17,7 @@ class ProgressAdapter(var fortschritte: List<Fortschritt>): RecyclerView.Adapter
             itemView.findViewById<TextView>(R.id.item_progress_id).text =
                 fortschritt.id.toString()
             itemView.findViewById<TextView>(R.id.item_progress_activity).text =
-                fortschritt.aktivitaet.toString()
+                SqlDatabase.getDatabase(itemView.context).getSqlData.selAktivitaet(fortschritt.aktivitaet)
             itemView.findViewById<TextView>(R.id.item_progress_amount).text =
                 fortschritt.zielmenge.toString()
             itemView.findViewById<TextView>(R.id.item_progress_metric).text =

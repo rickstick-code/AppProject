@@ -7,6 +7,6 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(indices = [Index(value = ["bezeichnung"], unique = true)])
 class Aktivitaet (
-    @PrimaryKey val id:Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @NotNull val bezeichnung:String ){
 }

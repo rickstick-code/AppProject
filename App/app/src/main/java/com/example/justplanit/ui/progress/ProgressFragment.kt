@@ -17,7 +17,7 @@ import com.example.justplanit.databinding.FragmentProgressBinding
 import java.util.*
 
 
-class ProgressFragment : Fragment() , AdapterView.OnItemSelectedListener {
+class ProgressFragment : Fragment()  {
 
     private var _binding: FragmentProgressBinding? = null
 
@@ -45,32 +45,30 @@ class ProgressFragment : Fragment() , AdapterView.OnItemSelectedListener {
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
                 Fortschritt(
                     datum = Date(),
-                    aktivitaet = 0,
+                    aktivitaet = SqlDatabase.getDatabase(requireContext().applicationContext).
+                        getSqlData.selAktivitaet(root.findViewById<TextView>(R.id.item_progress_activity).text.toString()),
                     metrik = SqlDatabase.getDatabase(requireContext().applicationContext).
                         getSqlData.selMetrik(root.findViewById<TextView>(R.id.item_progress_metric).text.toString()),
                     zielmenge = root.findViewById<TextView>(R.id.progress_amount).text.toString().toInt())
             )
+            setAdapter(root.findViewById(R.id.progress_recycler_view))
         }
 
-        //var itemList = arrayOf("test1","test2","fest3")
-        var itemList = SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selMetrik().map { it.einheit }
+        //Um den Aktvität-Spinner aufzufüllen
+        root.findViewById<Spinner>(R.id.progress_activity).adapter = ArrayAdapter(
+            requireContext().applicationContext,
+            android.R.layout.simple_spinner_item,
+            SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selAktivitaet().map { it.bezeichnung })
 
-        val spinner: Spinner = root.findViewById(R.id.progress_unit)
-        val arrayAdapter = ArrayAdapter(requireContext().applicationContext, android.R.layout.simple_spinner_item, itemList)
-        spinner.adapter = arrayAdapter
-        spinner.onItemSelectedListener = this
+
+        //Um den Metrik-Spinner aufzufüllen
+        root.findViewById<Spinner>(R.id.progress_unit).adapter = ArrayAdapter(
+            requireContext().applicationContext,
+            android.R.layout.simple_spinner_item,
+            SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selMetrik().map { it.einheit })
 
         return root
     }
-
-    override fun onNothingSelected(parent: AdapterView<*>?){
-        Toast.makeText(requireContext().applicationContext,"NIX",Toast.LENGTH_LONG).show()
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(requireContext().applicationContext,parent?.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show()
-    }
-
 
     private fun setAdapter(recyclerView: RecyclerView){
         val progressAdapter = ProgressAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selFortschritte())

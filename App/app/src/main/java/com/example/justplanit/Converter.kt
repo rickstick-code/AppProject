@@ -1,6 +1,7 @@
 package com.example.justplanit
 
 import androidx.room.TypeConverter
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Converter {
@@ -12,5 +13,10 @@ class Converter {
         @TypeConverter
         fun dateToTimestamp(date: Date?): Long? {
             return date?.time?.toLong()
+        }
+
+        fun toSimpleString(date: Date) : String {
+            val format = SimpleDateFormat("dd/MM/yyy")
+            return format.format(date)
         }
 }

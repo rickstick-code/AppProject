@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(indices = [Index(value = ["einheit"], unique = true)])
 class Metrik (
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @NotNull val bezeichnung: String,
     @NotNull val einheit: String ){
 }

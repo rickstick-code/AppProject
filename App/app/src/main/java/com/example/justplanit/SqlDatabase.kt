@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Aktivitaet::class, Fortschritt::class], version = 1)
+@Database(entities = [Aktivitaet::class, Fortschritt::class, Metrik::class], version = 1)
 @TypeConverters(Converter::class)
 abstract class SqlDatabase : RoomDatabase() {
     abstract val getSqlData: GetSqlData

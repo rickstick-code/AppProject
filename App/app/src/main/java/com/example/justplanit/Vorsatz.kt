@@ -7,7 +7,7 @@ import java.util.Date
 
 @Entity
 class Vorsatz (
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     @NotNull val bezeichnung: String,
     @NotNull val aktivitaet: Int,
     @NotNull val intervall: Int,

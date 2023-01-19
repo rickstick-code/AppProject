@@ -13,6 +13,8 @@ import com.example.justplanit.Fortschritt
 import com.example.justplanit.ProgressAdapter
 import com.example.justplanit.R
 import com.example.justplanit.SqlDatabase
+import androidx.room.Room
+import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentProgressBinding
 import java.util.*
 

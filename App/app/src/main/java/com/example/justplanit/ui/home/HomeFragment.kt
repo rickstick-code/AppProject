@@ -9,15 +9,23 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.justplanit.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentHomeBinding
-import com.example.justplanit.CreateResolutionActivity
-import com.example.justplanit.ViewResolutionActivity
+import java.util.Date
 
 class HomeFragment : Fragment() {
 
 
     private var _binding: FragmentHomeBinding? = null
+
+    companion object {
+        val RESOLUTION_ID = "RESOLUTION_ID"
+        val RESOLUTION_VIEW = 1
+    }
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,12 +41,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
-         */
 
         // Button for creating a new resolution
         val button: Button = root.findViewById(R.id.home_resolution_create)
@@ -47,18 +49,22 @@ class HomeFragment : Fragment() {
             activity?.startActivity(intent)
         }
 
-        // Creating and filling the ListView with current resolutions
-        val resolutionList:ListView = root.findViewById(R.id.home_listview)
-        val resolutions:Array<String> = arrayOf("running","drinking","testing")  // replace with active resolutions in database
-        val resolutionAdapter:ArrayAdapter<String>  = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,resolutions)
-        resolutionList.adapter = resolutionAdapter
+        //sample data for recyclerView
+        val resolutionSample = mutableListOf<Vorsatz>()
+        resolutionSample.add(Vorsatz(1,"Tetst",1,1,Date(),1,2,true))
+        resolutionSample.add(Vorsatz(3,"laufen",1,1,Date(),1,2,true))
+        resolutionSample.add(Vorsatz(5,"fitness",1,1,Date(),1,2,true))
 
-        resolutionList.setOnItemClickListener { adapterView, view, i, l ->
-            val intent = Intent(activity,ViewResolutionActivity::class.java)
-            intent.putExtra("Resolution_id",adapterView.getItemAtPosition(i).toString()) // instead if "12345" use id of resolution from database
-            activity?.startActivity(intent)
+
+        val resAdapter = ResolutionAdapter(resolutionSample) {
+            val intent = Intent(activity, ViewResolutionActivity::class.java)
+            intent.putExtra(RESOLUTION_ID, it.id)
+            startActivity(intent)
         }
 
+        val recyclerView = root.findViewById<RecyclerView>(R.id.home_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = resAdapter
 
         return root
 

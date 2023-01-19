@@ -16,10 +16,11 @@ class CreateResolutionActivity : AppCompatActivity() {
             SqlDatabase.getDatabase(applicationContext).getSqlData.insVorsatz(
                 Vorsatz(
                     bezeichnung = findViewById<TextView>(R.id.resolution_name).text.toString(),
-                    intervall = 0,
+                    intervall = SqlDatabase.getDatabase(applicationContext).
+                        getSqlData.selIntervall(findViewById<Spinner>(R.id.resolution_frequency).selectedItem.toString()),
                     aktivitaet = SqlDatabase.getDatabase(applicationContext).
                         getSqlData.selAktivitaet(findViewById<Spinner>(R.id.resolution_activty).selectedItem.toString()),
-                    startdatum = Date(),
+                    startdatum = Date(), //TODO - Datum muss noch vom text genommen werden und dann mit converter klasse umgewandelt werden
                     zielmenge = findViewById<TextView>(R.id.resolution_goal).text.toString().toIntOrNull() ?: 0,
                     metrik = SqlDatabase.getDatabase(applicationContext).
                         getSqlData.selMetrik(findViewById<Spinner>(R.id.resolution_unit).selectedItem.toString()),

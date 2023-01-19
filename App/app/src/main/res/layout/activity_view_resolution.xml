@@ -10,6 +10,7 @@
         android:id="@+id/respro_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="resolution name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,11 +54,14 @@
         android:id="@+id/respro_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:text="activity, unit/ frequency"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/respro_goal_text"
+        app:layout_constraintEnd_toEndOf="@+id/respro_date"
         app:layout_constraintStart_toStartOf="@+id/respro_date"
-        app:layout_constraintTop_toTopOf="@+id/respro_goal_text" />
+        app:layout_constraintTop_toTopOf="@+id/respro_goal_text"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/respro_add"

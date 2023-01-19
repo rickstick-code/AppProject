@@ -62,10 +62,9 @@ class HomeFragment : Fragment() {
     private fun setAdapter(recyclerView: RecyclerView){
         //Um den Vorsatz anzuklicken
         val resolutionAdapter = ResolutionAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selVorsatz()) {
-            //TODO - was passiert beim anklicken
-            /*val intent = Intent(activity, ViewResolutionActivity::class.java)
+            val intent = Intent(activity, ViewResolutionActivity::class.java)
             intent.putExtra(RESOLUTION_ID, it.id)
-            startActivity(intent)*/
+            startActivity(intent)
         }
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = resolutionAdapter

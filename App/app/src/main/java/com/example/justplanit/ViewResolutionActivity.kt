@@ -1,23 +1,61 @@
 package com.example.justplanit
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
-import com.example.justplanit.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.justplanit.ui.home.HomeFragment
+
 
 class ViewResolutionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_resolution)
 
-        val resolutionName = intent.getIntExtra(HomeFragment.RESOLUTION_ID,0)
+        val resolution = SqlDatabase.getDatabase(applicationContext).getSqlData.
+            selVorsatz(intent.getIntExtra(HomeFragment.RESOLUTION_ID,0))
 
-        /*if (resolutionName == null) {
+        findViewById<TextView>(R.id.respro_header).text = resolution.bezeichnung
+        findViewById<TextView>(R.id.respro_date).text = Converter().dateToString(resolution.startdatum)
+        findViewById<TextView>(R.id.respro_goal).text =
+            buildString {
+                append( SqlDatabase.getDatabase(applicationContext).
+                    getSqlData.selAktivitaet(resolution.aktivitaet))
+                append(", ")
+                append(resolution.zielmenge)
+                append(" ")
+                append(SqlDatabase.getDatabase(applicationContext).
+                    getSqlData.selMetrik(resolution.metrik))
+                append("/")
+                append(SqlDatabase.getDatabase(applicationContext).
+                    getSqlData.selIntervall(resolution.intervall))
+            }
+
+        setAdapter(findViewById(R.id.respro_recycler_view), resolution)
+
+        findViewById<Button>(R.id.respro_end).setOnClickListener{
+            SqlDatabase.getDatabase(applicationContext).getSqlData.delVorsatz(resolution.id)
             finish()
         }
-*/
-        findViewById<TextView>(R.id.respro_header).text = resolutionName.toString()
 
+        findViewById<Button>(R.id.respro_add).setOnClickListener{
+            //TODO - Go to progress fragement
+        }
     }
+
+
+
+    private fun setAdapter(recyclerView: RecyclerView, resolution: Vorsatz){
+        //Um den Fortschritt zu löschen
+        val progressAdapter = ProgressAdapter(SqlDatabase.getDatabase(applicationContext).
+            getSqlData.selFortschritte(resolution.metrik, resolution.aktivitaet)) {
+            //TODO - Er löscht schon in der Datenbank aber noch nicht das recycleView item
+            SqlDatabase.getDatabase(applicationContext).getSqlData.delFortschritt(it.id.toString())
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = progressAdapter
+    }
+
 }

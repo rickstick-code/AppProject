@@ -14,7 +14,7 @@ class ResolutionAdapter(val resolutionList: List<Vorsatz>, val clickListener: (r
         fun bindItem(resolution:Vorsatz){
             itemView.findViewById<TextView>(R.id.item_resolution_activty).text = resolution.bezeichnung
             itemView.findViewById<TextView>(R.id.item_resolution_intervall).text =
-                SqlDatabase.getDatabase(itemView.context).getSqlData.selIntervall(resolution.id)
+                SqlDatabase.getDatabase(itemView.context).getSqlData.selIntervall(resolution.intervall)
 
 
             itemView.setOnClickListener{

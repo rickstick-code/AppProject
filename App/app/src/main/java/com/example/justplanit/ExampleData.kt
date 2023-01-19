@@ -31,9 +31,9 @@ class ExampleData(var context: Context) {
         fortschritt("2022-10-12", 5, 1, 6)
         fortschritt("2022-10-12", 1, 5, 7)
 
-        vorsatz("Fit werden",0,3,"2022-12-01", 100, 1, true)
-        vorsatz("Richtig Fit werden",0,3,"2022-12-01", 200, 2, true)
-        vorsatz("Hammer werden",0,3,"2022-02-01", 150, 7, true)
+        vorsatz("Fit werden",1,3,"2022-12-01", 100, 1, true)
+        vorsatz("Richtig Fit werden",2,3,"2022-12-01", 200, 2, true)
+        vorsatz("Hammer werden",5,3,"2022-02-01", 150, 7, true)
 
         intervall("Stündlich",1)
         intervall("Täglich",1)

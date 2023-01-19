@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(indices = [Index(value = ["bezeichnung", "anzahl"], unique = true)])
 class Intervall (
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @NotNull val bezeichnung: String,
     @NotNull val anzahl: Int) {
 }

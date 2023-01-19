@@ -47,4 +47,14 @@ interface GetSqlData {
 
     @Query("SELECT * FROM Vorsatz")
     fun selVorsatz():  List<Vorsatz>
+
+    //Intervall
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insIntervall(intervall: Intervall)
+
+    @Query("SELECT * FROM Intervall")
+    fun selIntervall():  List<Intervall>
+
+    @Query("SELECT anzahl || ' ' || bezeichnung  FROM Intervall WHERE id=:id LIMIT 1 ")
+    fun selIntervall(id:Int): String
 }

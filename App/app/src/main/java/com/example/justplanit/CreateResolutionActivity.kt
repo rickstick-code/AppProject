@@ -42,5 +42,10 @@ class CreateResolutionActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             SqlDatabase.getDatabase(applicationContext).getSqlData.selMetrik().map { it.einheit })
 
+        //Um den Metrik-Spinner aufzufüllen
+        findViewById<Spinner>(R.id.resolution_frequency).adapter = ArrayAdapter(
+            applicationContext,
+            android.R.layout.simple_spinner_item,
+            SqlDatabase.getDatabase(applicationContext).getSqlData.selIntervall().map { it.anzahl.toString() + " " + it.bezeichnung })
     }
 }

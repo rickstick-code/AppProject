@@ -24,13 +24,16 @@ class ExampleData(var context: Context) {
         metrik("Stunden", "h")
         metrik("Male", "X")
 
-
         fortschritt("2022-10-10", 3, 10, 1)
         fortschritt("2022-10-11", 8, 11, 2)
         fortschritt("2022-10-12", 7, 12, 3)
         fortschritt("2022-10-12", 2, 20, 5)
         fortschritt("2022-10-12", 5, 1, 6)
         fortschritt("2022-10-12", 1, 5, 7)
+
+        vorsatz("Fit werden",0,3,"2022-12-01", 100, 1, true)
+        vorsatz("Richtig Fit werden",0,3,"2022-12-01", 200, 2, true)
+        vorsatz("Hammer werden",0,3,"2022-02-01", 150, 7, true)
     }
 
     fun metrik(bezeichnung:String, einheit:String){
@@ -43,5 +46,10 @@ class ExampleData(var context: Context) {
 
     fun aktivitaet(bezeichnung:String){
         SqlDatabase.getDatabase(context).getSqlData.insAktivitaet(Aktivitaet(bezeichnung = bezeichnung))
+    }
+
+    fun vorsatz(bezeichnung:String, intervall: Int, aktivitaet: Int, startdatum:String, zielmenge: Int, metrik: Int, aktiv:Boolean){
+        SqlDatabase.getDatabase(context).getSqlData.insVorsatz(Vorsatz(bezeichnung = bezeichnung, intervall = intervall,
+            aktivitaet = aktivitaet, startdatum = Converter().stringToDate(startdatum), zielmenge = zielmenge, metrik = metrik, aktiv = aktiv))
     }
 }

@@ -40,4 +40,11 @@ interface GetSqlData {
 
     @Query("SELECT * FROM Metrik")
     fun selMetrik():  List<Metrik>
+
+    //Vorsatz
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insVorsatz(vorsatz: Vorsatz)
+
+    @Query("SELECT * FROM Vorsatz")
+    fun selVorsatz():  List<Vorsatz>
 }

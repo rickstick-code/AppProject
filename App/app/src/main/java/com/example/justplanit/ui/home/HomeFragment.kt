@@ -26,7 +26,6 @@ class HomeFragment : Fragment() {
         val RESOLUTION_VIEW = 1
     }
 
-
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -49,27 +48,28 @@ class HomeFragment : Fragment() {
             activity?.startActivity(intent)
         }
 
-        //sample data for recyclerView
-        val resolutionSample = mutableListOf<Vorsatz>()
-        resolutionSample.add(Vorsatz(1,"Tetst",1,1,Date(),1,2,true))
-        resolutionSample.add(Vorsatz(3,"laufen",1,1,Date(),1,2,true))
-        resolutionSample.add(Vorsatz(5,"fitness",1,1,Date(),1,2,true))
-
-
-        val resAdapter = ResolutionAdapter(resolutionSample) {
-            val intent = Intent(activity, ViewResolutionActivity::class.java)
-            intent.putExtra(RESOLUTION_ID, it.id)
-            startActivity(intent)
-        }
-
-        val recyclerView = root.findViewById<RecyclerView>(R.id.home_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = resAdapter
+        setAdapter(root.findViewById(R.id.home_recycler_view))
 
         return root
-
     }
 
+    override fun onResume() {
+        activity?.let { setAdapter(it.findViewById(R.id.home_recycler_view)) }
+        super.onResume()
+    }
+
+    //Um den RecyclerView zu setzten
+    private fun setAdapter(recyclerView: RecyclerView){
+        //Um den Vorsatz anzuklicken
+        val resolutionAdapter = ResolutionAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selVorsatz()) {
+            //TODO - was passiert beim anklicken
+            /*val intent = Intent(activity, ViewResolutionActivity::class.java)
+            intent.putExtra(RESOLUTION_ID, it.id)
+            startActivity(intent)*/
+        }
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = resolutionAdapter
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

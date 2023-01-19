@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:text="@string/resolution_header"
         android:textSize="24sp"
@@ -98,10 +99,11 @@
 
     <EditText
         android:id="@+id/resolution_goal"
-        android:layout_width="176dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
+        android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_goal_text"
         app:layout_constraintStart_toStartOf="@+id/resolution_date"
         app:layout_constraintTop_toTopOf="@+id/resolution_goal_text" />
@@ -110,6 +112,7 @@
         android:id="@+id/resolution_activty"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_activity_text"
         app:layout_constraintStart_toStartOf="@+id/resolution_date"
         app:layout_constraintTop_toTopOf="@+id/resolution_activity_text" />
@@ -118,15 +121,18 @@
         android:id="@+id/resolution_frequency"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_frequency_text"
         app:layout_constraintStart_toStartOf="@+id/resolution_date"
         app:layout_constraintTop_toTopOf="@+id/resolution_frequency_text" />
 
     <Spinner
         android:id="@+id/resolution_unit"
-        android:layout_width="64dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:spinnerMode="dropdown"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_goal"
         app:layout_constraintStart_toEndOf="@+id/resolution_goal"
         app:layout_constraintTop_toTopOf="@+id/resolution_goal" />
@@ -139,5 +145,6 @@
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resolution_goal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

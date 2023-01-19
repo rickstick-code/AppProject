@@ -13,12 +13,10 @@ class ResolutionAdapter(val resolutionList: List<Vorsatz>, val clickListener: (r
     class ViewHolder(itemView: View, val clickListener: (res: Vorsatz) -> Unit):RecyclerView.ViewHolder(itemView){
         fun bindItem(resolution:Vorsatz){
             itemView.findViewById<TextView>(R.id.item_resolution_activty).text = resolution.bezeichnung
+
             itemView.setOnClickListener{
-                Log.e("Click",resolution.bezeichnung + " has been clicked")
                 clickListener(resolution)
-
             }
-
         }
     }
 

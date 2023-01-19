@@ -43,14 +43,14 @@ class ProgressFragment : Fragment()  {
         setAdapter(root.findViewById(R.id.progress_recycler_view))
 
         root.findViewById<Button>(R.id.progress_add).setOnClickListener {
-            Toast.makeText(requireContext().applicationContext,"A new resolution was created",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext().applicationContext,"A new progress was created",Toast.LENGTH_SHORT).show()
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
                 Fortschritt(
-                    datum = Date(),
+                    datum = Date(), // TODO - Datum muss noch vom text genommen werden und dann mit converter klasse umgewandelt werden
                     aktivitaet = SqlDatabase.getDatabase(requireContext().applicationContext).
-                        getSqlData.selAktivitaet(root.findViewById<TextView>(R.id.item_progress_activity).text.toString()),
+                        getSqlData.selAktivitaet(root.findViewById<Spinner>(R.id.progress_activity).selectedItem.toString()),
                     metrik = SqlDatabase.getDatabase(requireContext().applicationContext).
-                        getSqlData.selMetrik(root.findViewById<TextView>(R.id.item_progress_metric).text.toString()),
+                        getSqlData.selMetrik(root.findViewById<Spinner>(R.id.progress_unit).selectedItem.toString()),
                     zielmenge = root.findViewById<TextView>(R.id.progress_amount).text.toString().toInt())
             )
             setAdapter(root.findViewById(R.id.progress_recycler_view))
@@ -72,8 +72,9 @@ class ProgressFragment : Fragment()  {
         return root
     }
 
-    //Um den Fortschritt zu löschen
+    //Um den RecyclerView zu setzten
     private fun setAdapter(recyclerView: RecyclerView){
+        //Um den Fortschritt zu löschen
         val progressAdapter = ProgressAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selFortschritte()) {
             //TODO - Er löscht schon in der Datenbank aber noch nicht das recycleView item
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.delFortschritt(it.id.toString())

@@ -1,6 +1,7 @@
 package com.example.justplanit
 
 import android.content.Context
+import java.util.*
 
 class ExampleData(var context: Context) {
 
@@ -51,7 +52,7 @@ class ExampleData(var context: Context) {
     }
 
     fun fortschritt(datum:String, aktivitaet:Int, zielmenge:Int, metrik: Int){
-        SqlDatabase.getDatabase(context).getSqlData.insFortschritt(Fortschritt(datum = Converter().stringToDate(datum), aktivitaet = aktivitaet, zielmenge = zielmenge, metrik = metrik))
+        SqlDatabase.getDatabase(context).getSqlData.insFortschritt(Fortschritt(datum = Converter().stringToDate(datum) ?: Date(), aktivitaet = aktivitaet, zielmenge = zielmenge, metrik = metrik))
     }
 
     fun aktivitaet(bezeichnung:String){
@@ -60,7 +61,7 @@ class ExampleData(var context: Context) {
 
     fun vorsatz(bezeichnung:String, intervall: Int, aktivitaet: Int, startdatum:String, zielmenge: Int, metrik: Int, aktiv:Boolean){
         SqlDatabase.getDatabase(context).getSqlData.insVorsatz(Vorsatz(bezeichnung = bezeichnung, intervall = intervall,
-            aktivitaet = aktivitaet, startdatum = Converter().stringToDate(startdatum), zielmenge = zielmenge, metrik = metrik, aktiv = aktiv))
+            aktivitaet = aktivitaet, startdatum = Converter().stringToDate(startdatum) ?: Date(), zielmenge = zielmenge, metrik = metrik, aktiv = aktiv))
     }
 
     fun intervall(bezeichnung:String, anzahl: Int){

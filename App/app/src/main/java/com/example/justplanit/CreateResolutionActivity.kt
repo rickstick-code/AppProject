@@ -12,6 +12,9 @@ class CreateResolutionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_resolution)
 
         findViewById<Button>(R.id.resolution_save).setOnClickListener {
+            if(Converter().stringToDate(findViewById<Button>(R.id.progress_date).text.toString()) == null) {
+                Toast.makeText(applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()
+            }else{
             Toast.makeText(applicationContext,"A new resolution was created", Toast.LENGTH_SHORT).show()
             SqlDatabase.getDatabase(applicationContext).getSqlData.insVorsatz(
                 Vorsatz(
@@ -20,7 +23,7 @@ class CreateResolutionActivity : AppCompatActivity() {
                         getSqlData.selIntervall(findViewById<Spinner>(R.id.resolution_frequency).selectedItem.toString()),
                     aktivitaet = SqlDatabase.getDatabase(applicationContext).
                         getSqlData.selAktivitaet(findViewById<Spinner>(R.id.resolution_activty).selectedItem.toString()),
-                    startdatum = Date(), //TODO - Datum muss noch vom text genommen werden und dann mit converter klasse umgewandelt werden
+                    startdatum = Converter().stringToDate(findViewById<TextView>(R.id.resolution_date).text.toString()) ?: Date(),
                     zielmenge = findViewById<TextView>(R.id.resolution_goal).text.toString().toIntOrNull() ?: 0,
                     metrik = SqlDatabase.getDatabase(applicationContext).
                         getSqlData.selMetrik(findViewById<Spinner>(R.id.resolution_unit).selectedItem.toString()),
@@ -28,6 +31,7 @@ class CreateResolutionActivity : AppCompatActivity() {
                 )
             )
             finish()
+            }
         }
 
         //Um den Aktvität-Spinner aufzufüllen

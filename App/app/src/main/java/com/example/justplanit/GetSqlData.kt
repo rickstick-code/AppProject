@@ -25,7 +25,7 @@ interface GetSqlData {
     @Query("DELETE FROM Fortschritt WHERE ID=:id")
     fun delFortschritt(id:String)
 
-    @Query("SELECT * FROM Fortschritt")
+    @Query("SELECT * FROM Fortschritt ORDER BY id DESC")
     fun selFortschritte(): List<Fortschritt>
 
     @Query("SELECT * FROM Fortschritt WHERE metrik=:metrik AND aktivitaet=:aktivitaet")

@@ -16,6 +16,7 @@ import com.example.justplanit.SqlDatabase
 import androidx.room.Room
 import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentProgressBinding
+import org.w3c.dom.Text
 import java.util.*
 
 
@@ -40,17 +41,29 @@ class ProgressFragment : Fragment()  {
         setAdapter(root.findViewById(R.id.progress_recycler_view))
 
         root.findViewById<Button>(R.id.progress_add).setOnClickListener {
-            Toast.makeText(requireContext().applicationContext,"A new progress was created",Toast.LENGTH_SHORT).show()
-            SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
-                Fortschritt(
-                    datum = Date(), // TODO - Datum muss noch vom text genommen werden und dann mit converter klasse umgewandelt werden
-                    aktivitaet = SqlDatabase.getDatabase(requireContext().applicationContext).
-                        getSqlData.selAktivitaet(root.findViewById<Spinner>(R.id.progress_activity).selectedItem.toString()),
-                    metrik = SqlDatabase.getDatabase(requireContext().applicationContext).
-                        getSqlData.selMetrik(root.findViewById<Spinner>(R.id.progress_unit).selectedItem.toString()),
-                    zielmenge = root.findViewById<TextView>(R.id.progress_amount).text.toString().toInt())
-            )
-            setAdapter(root.findViewById(R.id.progress_recycler_view))
+            if(Converter().stringToDate(root.findViewById<TextView>(R.id.progress_date).text.toString()) == null) {
+                Toast.makeText(requireContext().applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()
+            }else {
+                Toast.makeText(
+                    requireContext().applicationContext,
+                    "A new progress was created",
+                    Toast.LENGTH_SHORT
+                ).show()
+                SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.insFortschritt(
+                    Fortschritt(
+                        datum = Converter().stringToDate(root.findViewById<TextView>(R.id.progress_date).text.toString()) ?: Date(),
+                        aktivitaet = SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selAktivitaet(
+                            root.findViewById<Spinner>(R.id.progress_activity).selectedItem.toString()
+                        ),
+                        metrik = SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selMetrik(
+                            root.findViewById<Spinner>(R.id.progress_unit).selectedItem.toString()
+                        ),
+                        zielmenge = root.findViewById<TextView>(R.id.progress_amount).text.toString()
+                            .toInt()
+                    )
+                )
+                setAdapter(root.findViewById(R.id.progress_recycler_view))
+            }
         }
 
         //Um den Aktvität-Spinner aufzufüllen

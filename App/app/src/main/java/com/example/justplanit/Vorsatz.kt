@@ -14,5 +14,7 @@ class Vorsatz (
     @NotNull val startdatum: Date = Date(),
     @NotNull val zielmenge: Int,
     @NotNull val metrik: Int,
-    @NotNull val aktiv: Boolean = true ){
+    @NotNull val aktiv: Boolean = true,
+    val kommentar: String = "space for comment"
+    ){
 }

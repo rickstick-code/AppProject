@@ -10,11 +10,17 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.justplanit.R
-import com.example.justplanit.ViewAchievementActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentAchievementsBinding
+import com.example.justplanit.ui.home.HomeFragment
 
 class AchievementsFragment : Fragment() {
+
+    companion object{
+        val ACHIEVEMENT_ID = "ACHIEVEMENT_ID"
+    }
 
     private var _binding: FragmentAchievementsBinding? = null
 
@@ -32,15 +38,9 @@ class AchievementsFragment : Fragment() {
 
         _binding = FragmentAchievementsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
         /*
-
-        val textView: TextView = binding.textAchievements
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-
-         */
-
         // Creating and filling the ListView with achievements
         val achievementList: ListView = root.findViewById(R.id.achievements_listview)
         val achievements:Array<String> = arrayOf("Achievement 1","Achievement 2", "Achievement 3","Achievement 4")  // replace with achievements
@@ -53,10 +53,24 @@ class AchievementsFragment : Fragment() {
             activity?.startActivity(intent)
         }
 
+         */
 
 
+        setAdapter(root.findViewById(R.id.achievements_recycler_view))
 
         return root
+    }
+
+    //Um den RecyclerView zu setzen
+    private fun setAdapter(recyclerView: RecyclerView){
+        //Um den Vorsatz anzuklicken
+        val achievementAdapter = AchievementAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selAchievement()) {
+            val intent = Intent(activity, ViewAchievementActivity::class.java)
+            intent.putExtra(ACHIEVEMENT_ID, it.name)
+            startActivity(intent)
+        }
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = achievementAdapter
     }
 
     override fun onDestroyView() {

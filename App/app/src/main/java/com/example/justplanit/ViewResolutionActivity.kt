@@ -2,6 +2,7 @@ package com.example.justplanit
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,12 +33,18 @@ class ViewResolutionActivity : AppCompatActivity() {
                 append(SqlDatabase.getDatabase(applicationContext).
                     getSqlData.selIntervall(resolution.intervall))
             }
+        findViewById<TextView>(R.id.respro_note).text = resolution.kommentar
 
         setAdapter(findViewById(R.id.respro_recycler_view), resolution)
 
         findViewById<Button>(R.id.respro_end).setOnClickListener{
             SqlDatabase.getDatabase(applicationContext).getSqlData.delVorsatz(resolution.id)
             finish()
+        }
+
+        findViewById<Button>(R.id.respro_note_save).setOnClickListener{
+            val note = findViewById<TextView>(R.id.respro_note).text.toString()
+            SqlDatabase.getDatabase(applicationContext).getSqlData.updVorsatzNote(resolution.id,note)
         }
 
         findViewById<Button>(R.id.respro_add).setOnClickListener{

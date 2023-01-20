@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="40dp"
         android:text="Activity"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/progress_amount_text"
@@ -44,7 +44,7 @@
         android:id="@+id/progress_date_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:text="@string/date"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/progress_amount_text"
@@ -68,7 +68,7 @@
 
     <Spinner
         android:id="@+id/progress_activity"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:ems="10"
@@ -79,11 +79,10 @@
 
     <EditText
         android:id="@+id/progress_amount"
-        android:layout_width="48dp"
+        android:layout_width="56dp"
         android:layout_height="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="25"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/progress_activity"
         app:layout_constraintEnd_toEndOf="@+id/progress_amount_text"
@@ -92,15 +91,14 @@
 
     <Spinner
         android:id="@+id/progress_unit"
-        android:layout_width="80dp"
+        android:layout_width="96dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
         android:spinnerMode="dropdown"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@+id/progress_amount"
-        app:layout_constraintEnd_toStartOf="@+id/progress_date"
         app:layout_constraintTop_toTopOf="@+id/progress_amount"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="196dp" />
 
     <EditText
         android:id="@+id/progress_date"

@@ -57,6 +57,9 @@ interface GetSqlData {
     @Query("SELECT * FROM Vorsatz WHERE id=:id LIMIT 1")
     fun selVorsatz(id:Int): Vorsatz
 
+    @Query("UPDATE Vorsatz SET kommentar=:note WHERE id=:id")
+    fun updVorsatzNote(id:Int,note:String)
+
     //Intervall
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insIntervall(intervall: Intervall)
@@ -69,4 +72,11 @@ interface GetSqlData {
 
     @Query("SELECT anzahl || ' ' || bezeichnung  FROM Intervall WHERE id=:id LIMIT 1 ")
     fun selIntervall(id:Int): String
+
+    //Achievement
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insAchievemnt(achievement: Achievement)
+
+    @Query("SELECT * FROM Achievement")
+    fun selAchievement(): List<Achievement>
 }

@@ -19,8 +19,10 @@ class ProgressAdapter(
     val clickListener: (fortschritt: Fortschritt) -> Unit
 ): RecyclerView.Adapter<ProgressAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View, val clickListener: (fortschritt: Fortschritt) -> Unit) : RecyclerView.ViewHolder(itemView) {
-        fun bindItem(fortschritt: Fortschritt) {
+    private var progresslist = fortschritte as MutableList<Fortschritt>
+
+    inner class ViewHolder(itemView: View, val clickListener: (fortschritt: Fortschritt) -> Unit) : RecyclerView.ViewHolder(itemView) {
+        fun bindItem(fortschritt: Fortschritt,index:Int) {
             itemView.findViewById<TextView>(R.id.item_progress_id).text =
                 fortschritt.id.toString()
             itemView.findViewById<TextView>(R.id.item_progress_activity).text =
@@ -34,6 +36,8 @@ class ProgressAdapter(
 
             itemView.findViewById<ImageView>(R.id.item_progress_delete).setOnClickListener {
                 clickListener(fortschritt)
+                deleteItem(index)
+
             }
         }
     }
@@ -45,11 +49,17 @@ class ProgressAdapter(
     }
 
     override fun getItemCount(): Int {
-        return fortschritte.count()
+        return progresslist.count()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, postion: Int) {
-        holder.bindItem(fortschritte[postion])
+        holder.bindItem(progresslist[postion],postion)
+    }
+
+    fun deleteItem(pos:Int){
+        progresslist.removeAt(pos)
+        notifyItemRemoved(pos)
+        notifyDataSetChanged()
     }
 
 }

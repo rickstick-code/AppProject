@@ -88,11 +88,11 @@ class ProgressFragment : Fragment()  {
     private fun setAdapter(recyclerView: RecyclerView){
         //Um den Fortschritt zu löschen
         val progressAdapter = ProgressAdapter(SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selFortschritte()) {
-            //TODO - Er löscht schon in der Datenbank aber noch nicht das recycleView item
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.delFortschritt(it.id.toString())
         }
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = progressAdapter
+
     }
 
     override fun onDestroyView() {

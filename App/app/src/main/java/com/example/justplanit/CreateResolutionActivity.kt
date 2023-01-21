@@ -2,6 +2,7 @@ package com.example.justplanit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import com.example.justplanit.R
 import org.w3c.dom.Text
@@ -34,6 +35,19 @@ class CreateResolutionActivity : AppCompatActivity() {
                 )
             )
             finish()
+            }
+        }
+
+        findViewById<Button>(R.id.resolution_new_activity_create).setOnClickListener {
+            val activity = findViewById<TextView>(R.id.resolution_new_activity).text.toString()
+            if (activity.isNotEmpty()) {
+                SqlDatabase.getDatabase(this).getSqlData.insAktivitaet(Aktivitaet(bezeichnung = activity))
+                findViewById<EditText>(R.id.resolution_new_activity).onEditorAction(EditorInfo.IME_ACTION_DONE)
+                findViewById<Spinner>(R.id.resolution_activty).adapter = ArrayAdapter(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    SqlDatabase.getDatabase(applicationContext).getSqlData.selAktivitaet().map { it.bezeichnung })
+                findViewById<TextView>(R.id.resolution_new_activity).text = ""
             }
         }
 

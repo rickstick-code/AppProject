@@ -139,11 +139,45 @@
         android:id="@+id/resolution_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="48dp"
         android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resolution_goal" />
+
+    <TextView
+        android:id="@+id/resolution_new_activity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="128dp"
+        android:text="Custom activity:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resolution_save" />
+
+    <EditText
+        android:id="@+id/resolution_new_activity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/resolution_new_activity_text"
+        app:layout_constraintEnd_toStartOf="@+id/resolution_new_activity_create"
+        app:layout_constraintStart_toEndOf="@+id/resolution_new_activity_text"
+        app:layout_constraintTop_toTopOf="@+id/resolution_new_activity_text" />
+
+    <Button
+        android:id="@+id/resolution_new_activity_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="CREATE"
+        app:layout_constraintBottom_toBottomOf="@+id/resolution_new_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/resolution_new_activity"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

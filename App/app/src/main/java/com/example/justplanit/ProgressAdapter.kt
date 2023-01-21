@@ -59,7 +59,6 @@ class ProgressAdapter(
     fun deleteItem(pos:Int){
         progresslist.removeAt(pos)
         notifyItemRemoved(pos)
-        notifyDataSetChanged()
     }
 
 }

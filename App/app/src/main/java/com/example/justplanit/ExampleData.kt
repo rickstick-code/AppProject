@@ -46,9 +46,9 @@ class ExampleData(var context: Context) {
         intervall("Monatlich",5)
         intervall("Monatlich",10)
 
-        achievement("Created a progress",Date(),"SELECT COUNT(*) FROM Fortschritt")
-        achievement("Created 5 progresses",Date(),"SELECT COUNT(*)-4 FROM Fortschritt")
+        achievement("Created your first progress",Date(),"SELECT COUNT(*) FROM Fortschritt")
         achievement("Created 10 progresses",Date(),"SELECT COUNT(*)-9 FROM Fortschritt")
+        achievement("Created 100 progresses",Date(),"SELECT COUNT(*)-99 FROM Fortschritt")
         achievement("Create a Resolution",Date(),"SELECT COUNT(*) FROM Vorsatz")
         achievement("Create 5 Resolutions",Date(),"SELECT COUNT(*)-4 FROM Vorsatz")
         achievement("Create 10 Resolutions",Date(),"SELECT COUNT(*)-9 FROM Vorsatz")

@@ -23,6 +23,7 @@
         </activity>
         <activity
             android:name=".ViewResolutionActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -30,6 +31,7 @@
         </activity>
         <activity
             android:name=".CreateResolutionActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

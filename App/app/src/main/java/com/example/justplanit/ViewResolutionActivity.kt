@@ -1,6 +1,7 @@
 package com.example.justplanit
 
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -45,12 +46,9 @@ class ViewResolutionActivity : AppCompatActivity() {
         findViewById<Button>(R.id.respro_note_save).setOnClickListener{
             val note = findViewById<TextView>(R.id.respro_note).text.toString()
             SqlDatabase.getDatabase(applicationContext).getSqlData.updVorsatzNote(resolution.id,note)
+            findViewById<EditText>(R.id.respro_note).onEditorAction(EditorInfo.IME_ACTION_DONE)
         }
 
-        findViewById<Button>(R.id.respro_add).setOnClickListener{
-            //TODO - Go to progress fragement
-            // aktuell habe ich den butten einfach entfernt -FLo
-        }
     }
 
 

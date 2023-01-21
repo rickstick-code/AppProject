@@ -30,7 +30,7 @@ interface GetSqlData {
     @Query("SELECT * FROM Fortschritt ORDER BY id DESC")
     fun selFortschritte(): List<Fortschritt>
 
-    @Query("SELECT * FROM Fortschritt WHERE metrik=:metrik AND aktivitaet=:aktivitaet")
+    @Query("SELECT * FROM Fortschritt WHERE metrik=:metrik AND aktivitaet=:aktivitaet ORDER BY id DESC")
     fun selFortschritte(metrik:Int, aktivitaet:Int): List<Fortschritt>
 
     //Metrik

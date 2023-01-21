@@ -59,7 +59,6 @@ class ViewResolutionActivity : AppCompatActivity() {
         //Um den Fortschritt zu löschen
         val progressAdapter = ProgressAdapter(SqlDatabase.getDatabase(applicationContext).
             getSqlData.selFortschritte(resolution.metrik, resolution.aktivitaet)) {
-            //TODO - Er löscht schon in der Datenbank aber noch nicht das recycleView item
             SqlDatabase.getDatabase(applicationContext).getSqlData.delFortschritt(it.id.toString())
         }
         recyclerView.layoutManager = LinearLayoutManager(this)

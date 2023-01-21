@@ -19,7 +19,7 @@ class ExampleData(var context: Context) {
 
         metrik("Meter", "m")
         metrik("Kilometer", "km")
-        metrik("Liter", "L")
+        metrik("Liter", "l")
         metrik("Sekunden", "s")
         metrik("Minuten", "min")
         metrik("Stunden", "h")

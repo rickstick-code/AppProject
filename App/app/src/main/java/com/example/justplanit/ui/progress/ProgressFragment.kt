@@ -61,7 +61,7 @@ class ProgressFragment : Fragment()  {
                             root.findViewById<Spinner>(R.id.progress_unit).selectedItem.toString()
                         ),
                         zielmenge = root.findViewById<TextView>(R.id.progress_amount).text.toString()
-                            .toInt()
+                            .toIntOrNull() ?: 0
                     )
                 )
                 setAdapter(root.findViewById(R.id.progress_recycler_view))

@@ -1,6 +1,8 @@
 package com.example.justplanit
 
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
+
 
 @Dao
 interface GetSqlData {
@@ -80,7 +82,7 @@ interface GetSqlData {
     @Query("SELECT * FROM Achievement")
     fun selAchievement(): List<Achievement>
 
-    @Query("SELECT * FROM Achievement WHERE name=:name")
+    @Query("SELECT * FROM Achievement WHERE name=:name LIMIT 1 ")
     fun selAchievementName(name:String): Achievement
 
     @Query("UPDATE Achievement SET bild=:img WHERE name=:name")
@@ -88,4 +90,7 @@ interface GetSqlData {
 
     @Query("UPDATE Achievement SET kommentar=:note WHERE name=:name")
     fun updAchievementNote(name:String,note:String)
+
+    @RawQuery
+    fun rawAchievement(query: SupportSQLiteQuery): Int
 }

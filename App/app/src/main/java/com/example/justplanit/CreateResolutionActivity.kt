@@ -15,7 +15,7 @@ class CreateResolutionActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.resolution_date).text = Converter().dateToString(Date())
 
         findViewById<Button>(R.id.resolution_save).setOnClickListener {
-            if(Converter().stringToDate(findViewById<TextView>(R.id.progress_date).text.toString()) == null) {
+            if(Converter().stringToDate(findViewById<TextView>(R.id.resolution_date).text.toString()) == null) {
                 Toast.makeText(applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()
             }else{
             Toast.makeText(applicationContext,"A new resolution was created", Toast.LENGTH_SHORT).show()

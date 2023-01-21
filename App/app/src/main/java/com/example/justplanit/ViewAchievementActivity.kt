@@ -32,7 +32,6 @@ class ViewAchievementActivity : AppCompatActivity() {
 
 
         val achievementName = intent.getStringExtra(AchievementsFragment.ACHIEVEMENT_ID)
-
         if (achievementName == null) {
             //finish()
         }

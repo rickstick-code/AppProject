@@ -46,10 +46,13 @@ class ExampleData(var context: Context) {
         intervall("Monatlich",5)
         intervall("Monatlich",10)
 
-        achievement("Achievement 1",false,Date())
-        achievement("Achievement 2",true,Date())
-        achievement("Achievement 3",false,Date())
-        achievement("Achievement 4",false,Date())
+        achievement("Created a progress",Date(),"SELECT COUNT(*) FROM Fortschritt")
+        achievement("Created 5 progresses",Date(),"SELECT COUNT(*)-4 FROM Fortschritt")
+        achievement("Created 10 progresses",Date(),"SELECT COUNT(*)-9 FROM Fortschritt")
+        achievement("Create a Resolution",Date(),"SELECT COUNT(*) FROM Vorsatz")
+        achievement("Create 5 Resolutions",Date(),"SELECT COUNT(*)-4 FROM Vorsatz")
+        achievement("Create 10 Resolutions",Date(),"SELECT COUNT(*)-9 FROM Vorsatz")
+        achievement("Drinking is healthy!",Date(),"SELECT COUNT(*) FROM Vorsatz WHERE aktivitaet=7")
     }
 
     fun metrik(bezeichnung:String, einheit:String){
@@ -73,7 +76,7 @@ class ExampleData(var context: Context) {
         SqlDatabase.getDatabase(context).getSqlData.insIntervall(Intervall(bezeichnung = bezeichnung, anzahl = anzahl))
     }
 
-    fun achievement(name:String,geschafft:Boolean, datum: Date){
-        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name,geschafft,datum))
+    fun achievement(name:String, datum: Date, voraussetzung: String){
+        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name,datum,voraussetzung))
     }
 }

@@ -9,10 +9,9 @@ import java.util.Date
 @Entity
 class Achievement(
     @PrimaryKey val name:String,
-    @NotNull val erreicht: Boolean,
     @NotNull val datum: Date = Date(),
+    val voraussetzung:String,
     val bild:ByteArray = Converter().bitmapToBytes(Bitmap.createBitmap(320,320,Bitmap.Config.ARGB_8888)),
     val kommentar:String = "space for comment"
-
     ) {
 }

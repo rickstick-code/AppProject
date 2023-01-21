@@ -46,23 +46,14 @@ class ExampleData(var context: Context) {
         intervall("Monatlich",5)
         intervall("Monatlich",10)
 
-<<<<<<< Updated upstream
-        achievement("Created your first progress",Date(),"SELECT COUNT(*) FROM Fortschritt")
-        achievement("Created 10 progresses",Date(),"SELECT COUNT(*)-9 FROM Fortschritt")
-        achievement("Created 100 progresses",Date(),"SELECT COUNT(*)-99 FROM Fortschritt")
-        achievement("Create a Resolution",Date(),"SELECT COUNT(*) FROM Vorsatz")
-        achievement("Create 5 Resolutions",Date(),"SELECT COUNT(*)-4 FROM Vorsatz")
-        achievement("Create 10 Resolutions",Date(),"SELECT COUNT(*)-9 FROM Vorsatz")
-        achievement("Drinking is healthy!",Date(),"SELECT COUNT(*) FROM Vorsatz WHERE aktivitaet=7")
-=======
-        achievement("Created a progress","SELECT COUNT(*) FROM Fortschritt")
-        achievement("Created 5 progresses","SELECT COUNT(*)-4 FROM Fortschritt")
-        achievement("Created 10 progresses","SELECT COUNT(*)-9 FROM Fortschritt")
-        achievement("Create a Resolution","SELECT COUNT(*) FROM Vorsatz")
+        achievement("Create your first progress","SELECT COUNT(*) FROM Fortschritt")
+        achievement("Create 5 progresses","SELECT COUNT(*)-4 FROM Fortschritt")
+        achievement("Create 10 progresses","SELECT COUNT(*)-9 FROM Fortschritt")
+        achievement("Create your first Resolution","SELECT COUNT(*) FROM Vorsatz")
         achievement("Create 5 Resolutions","SELECT COUNT(*)-4 FROM Vorsatz")
         achievement("Create 10 Resolutions","SELECT COUNT(*)-9 FROM Vorsatz")
         achievement("Drinking is healthy!","SELECT COUNT(*) FROM Vorsatz WHERE aktivitaet=7")
->>>>>>> Stashed changes
+
     }
 
     fun metrik(bezeichnung:String, einheit:String){

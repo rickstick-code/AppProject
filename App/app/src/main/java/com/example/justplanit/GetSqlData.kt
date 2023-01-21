@@ -2,6 +2,7 @@ package com.example.justplanit
 
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
+import java.util.*
 
 
 @Dao
@@ -90,6 +91,9 @@ interface GetSqlData {
 
     @Query("UPDATE Achievement SET kommentar=:note WHERE name=:name")
     fun updAchievementNote(name:String,note:String)
+
+    @Query("UPDATE Achievement SET datum=:datum WHERE name=:name")
+    fun updAchievementDate(name:String, datum: Date)
 
     @RawQuery
     fun rawAchievement(query: SupportSQLiteQuery): Int

@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.sqlite.db.SimpleSQLiteQuery
+import java.util.Date
 
 
 class AchievementAdapter(val achievementList: List<Achievement>, val clickListener: (res: Achievement) -> Unit): RecyclerView.Adapter<AchievementAdapter.ViewHolder>() {
@@ -17,6 +19,10 @@ class AchievementAdapter(val achievementList: List<Achievement>, val clickListen
             itemView.findViewById<CheckBox>(R.id.item_achievement_completed).isChecked =
                  SqlDatabase.getDatabase(itemView.context).getSqlData.rawAchievement(SimpleSQLiteQuery(achievement.voraussetzung)) > 0
             if (itemView.findViewById<CheckBox>(R.id.item_achievement_completed).isChecked){
+                if(Converter().dateToString(achievement.datum) == "0001-01-01"){
+                    Toast.makeText(itemView.context,"An achievement was made!",Toast.LENGTH_SHORT).show()
+                    SqlDatabase.getDatabase(itemView.context).getSqlData.updAchievementDate(achievement.name, Date())
+                }
                 itemView.setOnClickListener{
                     clickListener(achievement)
                 }

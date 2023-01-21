@@ -49,6 +49,7 @@ class ViewResolutionActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.respro_add).setOnClickListener{
             //TODO - Go to progress fragement
+            // aktuell habe ich den butten einfach entfernt -FLo
         }
     }
 

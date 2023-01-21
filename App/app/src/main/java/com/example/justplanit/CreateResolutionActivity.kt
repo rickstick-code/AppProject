@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.justplanit.R
+import org.w3c.dom.Text
 import java.util.*
 
 class CreateResolutionActivity : AppCompatActivity() {
@@ -11,8 +12,10 @@ class CreateResolutionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_resolution)
 
+        findViewById<TextView>(R.id.resolution_date).text = Converter().dateToString(Date())
+
         findViewById<Button>(R.id.resolution_save).setOnClickListener {
-            if(Converter().stringToDate(findViewById<Button>(R.id.progress_date).text.toString()) == null) {
+            if(Converter().stringToDate(findViewById<TextView>(R.id.progress_date).text.toString()) == null) {
                 Toast.makeText(applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()
             }else{
             Toast.makeText(applicationContext,"A new resolution was created", Toast.LENGTH_SHORT).show()

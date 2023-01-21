@@ -79,4 +79,13 @@ interface GetSqlData {
 
     @Query("SELECT * FROM Achievement")
     fun selAchievement(): List<Achievement>
+
+    @Query("SELECT * FROM Achievement WHERE name=:name")
+    fun selAchievementName(name:String): Achievement
+
+    @Query("UPDATE Achievement SET bild=:img WHERE name=:name")
+    fun updAchievementImg(name:String, img:ByteArray)
+
+    @Query("UPDATE Achievement SET kommentar=:note WHERE name=:name")
+    fun updAchievementNote(name:String,note:String)
 }

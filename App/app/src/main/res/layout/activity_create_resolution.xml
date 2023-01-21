@@ -80,7 +80,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_name_text"
         app:layout_constraintStart_toStartOf="@+id/resolution_activty"
         app:layout_constraintTop_toTopOf="@+id/resolution_name_text" />
@@ -91,8 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="date"
         app:layout_constraintBottom_toBottomOf="@+id/resolution_date_text"
         app:layout_constraintStart_toEndOf="@+id/resolution_date_text"
         app:layout_constraintTop_toTopOf="@+id/resolution_date_text" />
@@ -147,4 +145,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resolution_goal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ import com.example.justplanit.ui.home.HomeFragment
 class AchievementsFragment : Fragment() {
 
     companion object{
-        val ACHIEVEMENT_ID = "ACHIEVEMENT_ID"
+        const val ACHIEVEMENT_ID = "ACHIEVEMENT_ID"
     }
 
     private var _binding: FragmentAchievementsBinding? = null
@@ -38,23 +38,6 @@ class AchievementsFragment : Fragment() {
 
         _binding = FragmentAchievementsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-        /*
-        // Creating and filling the ListView with achievements
-        val achievementList: ListView = root.findViewById(R.id.achievements_listview)
-        val achievements:Array<String> = arrayOf("Achievement 1","Achievement 2", "Achievement 3","Achievement 4")  // replace with achievements
-        val achievementAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext().applicationContext,android.R.layout.simple_list_item_1,achievements)
-        achievementList.adapter = achievementAdapter
-
-        achievementList.setOnItemClickListener { adapterView, view, i, l ->
-            val intent = Intent(activity, ViewAchievementActivity::class.java)
-            intent.putExtra("Achievement_id",adapterView.getItemAtPosition(i).toString()) // instead if "12345" use id of resolution from database
-            activity?.startActivity(intent)
-        }
-
-         */
-
 
         setAdapter(root.findViewById(R.id.achievements_recycler_view))
 

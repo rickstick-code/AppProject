@@ -25,12 +25,12 @@
 
         <TextView
             android:id="@+id/item_progress_activity"
-            android:layout_width="100dp"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:text="running"
-            android:textAlignment="center" />
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/item_progress_amount"
@@ -47,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
-            android:text="km" />
+            android:text="km"
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/item_progress_date"

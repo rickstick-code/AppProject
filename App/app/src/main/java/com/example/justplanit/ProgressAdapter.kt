@@ -27,7 +27,7 @@ class ProgressAdapter(
                 SqlDatabase.getDatabase(itemView.context).getSqlData.selAktivitaet(fortschritt.aktivitaet)
             itemView.findViewById<TextView>(R.id.item_progress_amount).text =
                 fortschritt.zielmenge.toString()
-            itemView.findViewById<TextView>(R.id.item_progress_metric).text =
+            itemView.findViewById<TextView>(R.id.item_progress_metric).text = " " +
                 SqlDatabase.getDatabase(itemView.context).getSqlData.selMetrik(fortschritt.metrik)
             itemView.findViewById<TextView>(R.id.item_progress_date).text =
                 Converter().dateToString(fortschritt.datum)

@@ -70,8 +70,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:text="@string/progress_add"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/respro_goal_text" />
+        app:layout_constraintTop_toBottomOf="@+id/respro_goal_text"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/respro_end"

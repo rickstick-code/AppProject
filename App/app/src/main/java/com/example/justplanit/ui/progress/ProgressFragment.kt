@@ -40,6 +40,8 @@ class ProgressFragment : Fragment()  {
 
         setAdapter(root.findViewById(R.id.progress_recycler_view))
 
+        root.findViewById<TextView>(R.id.progress_date).text = Converter().dateToString(Date())
+
         root.findViewById<Button>(R.id.progress_add).setOnClickListener {
             if(Converter().stringToDate(root.findViewById<TextView>(R.id.progress_date).text.toString()) == null) {
                 Toast.makeText(requireContext().applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()

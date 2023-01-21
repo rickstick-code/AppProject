@@ -14,9 +14,12 @@ class AchievementAdapter(val achievementList: List<Achievement>, val clickListen
         fun bindItem(achievement: Achievement){
             itemView.findViewById<TextView>(R.id.item_achievement_name).text = achievement.name
             itemView.findViewById<CheckBox>(R.id.item_achievement_completed).isChecked = achievement.erreicht
-            itemView.setOnClickListener{
-                clickListener(achievement)
+            if (achievement.erreicht){
+                itemView.setOnClickListener{
+                    clickListener(achievement)
+                }
             }
+
         }
     }
 

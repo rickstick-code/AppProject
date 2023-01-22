@@ -20,7 +20,7 @@ class AchievementAdapter(val achievementList: List<Achievement>, val clickListen
                 if(SqlDatabase.getDatabase(itemView.context).getSqlData.rawAchievement(SimpleSQLiteQuery(achievement.voraussetzung)) > 0 ||
                     Converter().dateToString(achievement.datum) != "0001-01-01"){
                     if(Converter().dateToString(achievement.datum) == "0001-01-01"){
-                        Toast.makeText(itemView.context,"An achievement was made!",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(itemView.context,itemView.context.getString(R.string.new_achievement),Toast.LENGTH_SHORT).show()
                         SqlDatabase.getDatabase(itemView.context).getSqlData.updAchievementDate(achievement.name, Date())
                     }
                     itemView.setOnClickListener{

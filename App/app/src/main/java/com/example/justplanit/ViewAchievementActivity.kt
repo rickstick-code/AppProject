@@ -41,7 +41,7 @@ class ViewAchievementActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.achievement_header).text = achievementName
         findViewById<ImageView>(R.id.achievement_image).setImageBitmap(Converter().bytesToBitmap(achievement.bild))
         findViewById<TextView>(R.id.achievement_note).text = achievement.kommentar
-        findViewById<TextView>(R.id.achievement_date).text = "Achieved on " + Converter().dateToString(achievement.datum)
+        findViewById<TextView>(R.id.achievement_date).text = getString(R.string.achieved_on) + " " + Converter().dateToString(achievement.datum)
 
 
         findViewById<Button>(R.id.achievement_image_change).setOnClickListener {

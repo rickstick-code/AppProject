@@ -14,10 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentHomeBinding
-import java.util.Date
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+
 
 class HomeFragment : Fragment() {
-
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -50,8 +55,34 @@ class HomeFragment : Fragment() {
 
         setAdapter(root.findViewById(R.id.home_recycler_view))
 
+        //Api
+        getApiAdvice()
+
         return root
     }
+
+    //Api call
+    private fun getApiAdvice() {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://api.adviceslip.com")
+            .build()
+            .create(ApiInterface::class.java)
+
+        val retrofitData = retrofitBuilder.getAdvice()
+
+        retrofitData.enqueue(object : Callback<Advice?> {
+            override fun onResponse(call: Call<Advice?>, response: Response<Advice?>) {
+                val responseBody = response.body()!!
+                binding.root.findViewById<TextView>(R.id.home_motd).text = "Advice:\n"+responseBody.slip.advice
+            }
+
+            override fun onFailure(call: Call<Advice?>, t: Throwable) {
+                error("there was an error")
+            }
+        })
+    }
+
 
     override fun onResume() {
         activity?.let { setAdapter(it.findViewById(R.id.home_recycler_view)) }
@@ -74,4 +105,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

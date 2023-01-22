@@ -7,3 +7,6 @@ Mitglieder:
 - Jakob Schöllauf
 - Frederick Van Bockryck
 - Jenny Le
+
+User Documentation
+https://github.com/rickstick-code/AppProject/blob/main/JustPlanIt_UserDocumentation.pdf

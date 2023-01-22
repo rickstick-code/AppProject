@@ -10,7 +10,6 @@ import java.util.*
 
 
 class Converter {
-    //TODO - Gibt er bei falsch wirklich null raus?
         @TypeConverter
         fun stringToDate(date: String): Date? {
             val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN)

@@ -17,9 +17,9 @@ class CreateResolutionActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.resolution_save).setOnClickListener {
             if(Converter().stringToDate(findViewById<TextView>(R.id.resolution_date).text.toString()) == null) {
-                Toast.makeText(applicationContext,"Falsches Datum! Richtiges Format: yyyy-mm-dd",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,getString(R.string.wrong_date),Toast.LENGTH_LONG).show()
             }else{
-            Toast.makeText(applicationContext,"A new resolution was created", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,getString(R.string.new_resolution), Toast.LENGTH_SHORT).show()
             SqlDatabase.getDatabase(applicationContext).getSqlData.insVorsatz(
                 Vorsatz(
                     bezeichnung = findViewById<TextView>(R.id.resolution_name).text.toString(),
@@ -64,10 +64,10 @@ class CreateResolutionActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             SqlDatabase.getDatabase(applicationContext).getSqlData.selMetrik().map { it.einheit })
 
-        //Um den Metrik-Spinner aufzufüllen
+        //Um den Intervall-Spinner aufzufüllen
         findViewById<Spinner>(R.id.resolution_frequency).adapter = ArrayAdapter(
             applicationContext,
             android.R.layout.simple_spinner_item,
-            SqlDatabase.getDatabase(applicationContext).getSqlData.selIntervall().map { it.anzahl.toString() + " " + it.bezeichnung })
+            SqlDatabase.getDatabase(applicationContext).getSqlData.selIntervall().map { it.anzahl.toString() + " x " + it.bezeichnung })
     }
 }

@@ -22,5 +22,28 @@
     <string name="amount">Amount</string>
     <string name="activity">Activity</string>
     <string name="save_note">SAVE NOTE</string>
+    <string name="wrong_date">Wrong date format! Please use: yyyy-mm-dd</string>
+    <string name="new_resolution">A new resolution was created</string>
+    <string name="new_achievement">You completed an achievement!</string>
+    <string name="hour">hour</string>
+    <string name="day">day</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
+    <string name="meters">meters</string>
+    <string name="kilometers">kilometers</string>
+    <string name="liters">liters</string>
+    <string name="seconds">seconds</string>
+    <string name="minutes">minutes</string>
+    <string name="hours">hours</string>
+    <string name="times">times</string>
+    <string name="a_progress_1">Create your first progress</string>
+    <string name="a_progress_10">Create 10 progresses</string>
+    <string name="a_progress_100">Create 100 progresses</string>
+    <string name="a_resolution_1">Create your first Resolution</string>
+    <string name="a_resolution_5">Create 5 Resolutions</string>
+    <string name="a_resolution_10">Create 10 Resolutions</string>
+    <string name="a_drinking">Drinking is healthy!</string>
+    <string name="achieved_on">Achieved on </string>
+
 
 </resources>

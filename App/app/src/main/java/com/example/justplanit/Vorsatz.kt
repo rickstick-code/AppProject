@@ -15,6 +15,6 @@ class Vorsatz (
     @NotNull val zielmenge: Int,
     @NotNull val metrik: Int,
     @NotNull val aktiv: Boolean = true,
-    val kommentar: String = "space for comment"
+    val kommentar: String = "space for comments"
     ){
 }

@@ -8,23 +8,6 @@ class ExampleData(var context: Context) {
     fun create() {
         if(SqlDatabase.getDatabase(context).getSqlData.selAktivitaet().isNotEmpty()){return}
 
-        aktivitaet("Gesund Essen")
-        aktivitaet("Handy Fasten")
-        aktivitaet("Laufen")
-        aktivitaet("Lernen")
-        aktivitaet("Meditieren")
-        aktivitaet("Trainieren")
-        aktivitaet("Trinken")
-        aktivitaet("Wandern")
-
-        metrik("Meter", "m")
-        metrik("Kilometer", "km")
-        metrik("Liter", "l")
-        metrik("Sekunden", "s")
-        metrik("Minuten", "min")
-        metrik("Stunden", "h")
-        metrik("Male", "X")
-
         fortschritt("2022-10-10", 3, 10, 1)
         fortschritt("2022-10-11", 8, 11, 2)
         fortschritt("2022-10-12", 7, 12, 3)
@@ -36,23 +19,41 @@ class ExampleData(var context: Context) {
         vorsatz("Richtig Fit werden",2,3,"2022-12-01", 200, 2, true)
         vorsatz("Hammer werden",5,3,"2022-02-01", 150, 7, true)
 
-        intervall("Stündlich",1)
-        intervall("Täglich",1)
-        intervall("Täglich",2)
-        intervall("Wöchentlich",1)
-        intervall("Wöchentlich",2)
-        intervall("Wöchentlich",3)
-        intervall("Monatlich",1)
-        intervall("Monatlich",5)
-        intervall("Monatlich",10)
+        aktivitaet("Gesund Essen")
+        aktivitaet("Handy Fasten")
+        aktivitaet("Laufen")
+        aktivitaet("Lernen")
+        aktivitaet("Meditieren")
+        aktivitaet("Trainieren")
+        aktivitaet("Trinken")
+        aktivitaet("Wandern")
 
-        achievement("Create your first progress","SELECT COUNT(*) FROM Fortschritt")
-        achievement("Create 5 progresses","SELECT COUNT(*)-4 FROM Fortschritt")
-        achievement("Create 10 progresses","SELECT COUNT(*)-9 FROM Fortschritt")
-        achievement("Create your first Resolution","SELECT COUNT(*) FROM Vorsatz")
-        achievement("Create 5 Resolutions","SELECT COUNT(*)-4 FROM Vorsatz")
-        achievement("Create 10 Resolutions","SELECT COUNT(*)-9 FROM Vorsatz")
-        achievement("Drinking is healthy!","SELECT COUNT(*) FROM Vorsatz WHERE aktivitaet=7")
+        metrik(context.getString(R.string.meters), "m")
+        metrik(context.getString(R.string.kilometers), "km")
+        metrik(context.getString(R.string.liters), "l")
+        metrik(context.getString(R.string.seconds), "s")
+        metrik(context.getString(R.string.minutes), "min")
+        metrik(context.getString(R.string.hours), "h")
+        metrik(context.getString(R.string.times), "X")
+
+        intervall(context.getString(R.string.hour),1)
+        intervall(context.getString(R.string.day),1)
+        intervall(context.getString(R.string.day),2)
+        intervall(context.getString(R.string.week),1)
+        intervall(context.getString(R.string.week),2)
+        intervall(context.getString(R.string.week),3)
+        intervall(context.getString(R.string.week),4)
+        intervall(context.getString(R.string.month),1)
+        intervall(context.getString(R.string.month),5)
+        intervall(context.getString(R.string.month),10)
+
+        achievement(context.getString(R.string.a_progress_1),"SELECT COUNT(*) FROM Fortschritt")
+        achievement(context.getString(R.string.a_progress_10),"SELECT COUNT(*)-9 FROM Fortschritt")
+        achievement(context.getString(R.string.a_progress_100),"SELECT COUNT(*)-99 FROM Fortschritt")
+        achievement(context.getString(R.string.a_resolution_1),"SELECT COUNT(*) FROM Vorsatz")
+        achievement(context.getString(R.string.a_resolution_5),"SELECT COUNT(*)-4 FROM Vorsatz")
+        achievement(context.getString(R.string.a_resolution_10),"SELECT COUNT(*)-9 FROM Vorsatz")
+        achievement(context.getString(R.string.a_drinking),"SELECT COUNT(*) FROM Vorsatz WHERE aktivitaet=7")
 
     }
 
@@ -78,6 +79,6 @@ class ExampleData(var context: Context) {
     }
 
     fun achievement(name:String, voraussetzung: String){
-        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name,Converter().stringToDate("0001-01-01")!!,voraussetzung))
+        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name =  name, voraussetzung = voraussetzung))
     }
 }

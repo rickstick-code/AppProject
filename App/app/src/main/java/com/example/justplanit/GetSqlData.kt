@@ -70,10 +70,10 @@ interface GetSqlData {
     @Query("SELECT * FROM Intervall")
     fun selIntervall():  List<Intervall>
 
-    @Query("SELECT id FROM Intervall WHERE anzahl || ' x ' || bezeichnung =:string LIMIT 1")
+    @Query("SELECT id FROM Intervall WHERE anzahl || ' ' || bezeichnung =:string LIMIT 1")
     fun selIntervall(string:String): Int
 
-    @Query("SELECT anzahl || ' x ' || bezeichnung  FROM Intervall WHERE id=:id LIMIT 1 ")
+    @Query("SELECT anzahl || ' ' || bezeichnung  FROM Intervall WHERE id=:id LIMIT 1 ")
     fun selIntervall(id:Int): String
 
     //Achievement

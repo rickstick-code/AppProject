@@ -71,14 +71,14 @@ class ProgressFragment : Fragment()  {
         //Um den Aktvität-Spinner aufzufüllen
         root.findViewById<Spinner>(R.id.progress_activity).adapter = ArrayAdapter(
             requireContext().applicationContext,
-            R.layout.item_spinner,
+            android.R.layout.simple_spinner_item,
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selAktivitaet().map { it.bezeichnung })
 
 
         //Um den Metrik-Spinner aufzufüllen
         root.findViewById<Spinner>(R.id.progress_unit).adapter = ArrayAdapter(
             requireContext().applicationContext,
-            R.layout.item_spinner,
+            android.R.layout.simple_spinner_item,
             SqlDatabase.getDatabase(requireContext().applicationContext).getSqlData.selMetrik().map { it.einheit })
 
         return root

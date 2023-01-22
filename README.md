@@ -9,10 +9,8 @@ Mitglieder:
 - Frederick Van Bockryck
 - Jenny Le
 
-User Documentation
-
+## User Documentation
 https://github.com/rickstick-code/AppProject/blob/main/JustPlanIt_UserDocumentation.pdf
 
-Install Instructions
-
+## Install Instructions
 Just install, click and it will run

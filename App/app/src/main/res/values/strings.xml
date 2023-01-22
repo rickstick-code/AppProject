@@ -22,5 +22,6 @@
     <string name="amount">Amount</string>
     <string name="activity">Activity</string>
     <string name="save_note">SAVE NOTE</string>
+    <string name="advice_nloading">Advice:\nLoading...</string>
 
 </resources>

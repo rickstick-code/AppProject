@@ -79,6 +79,6 @@ class ExampleData(var context: Context) {
     }
 
     fun achievement(name:String, voraussetzung: String){
-        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name =  name, voraussetzung = voraussetzung))
+        SqlDatabase.getDatabase(context).getSqlData.insAchievemnt(Achievement(name =  name, datum = Converter().stringToDate("0000-01-01")!!, voraussetzung = voraussetzung))
     }
 }

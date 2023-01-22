@@ -17,18 +17,22 @@ class AchievementAdapter(val achievementList: List<Achievement>, val clickListen
         fun bindItem(achievement: Achievement){
             itemView.findViewById<TextView>(R.id.item_achievement_name).text = achievement.name
             itemView.findViewById<CheckBox>(R.id.item_achievement_completed).isChecked =
-                 SqlDatabase.getDatabase(itemView.context).getSqlData.rawAchievement(SimpleSQLiteQuery(achievement.voraussetzung)) > 0
-            if (itemView.findViewById<CheckBox>(R.id.item_achievement_completed).isChecked){
-                if(Converter().dateToString(achievement.datum) == "0001-01-01"){
-                    Toast.makeText(itemView.context,"An achievement was made!",Toast.LENGTH_SHORT).show()
-                    SqlDatabase.getDatabase(itemView.context).getSqlData.updAchievementDate(achievement.name, Date())
+                if(SqlDatabase.getDatabase(itemView.context).getSqlData.rawAchievement(SimpleSQLiteQuery(achievement.voraussetzung)) > 0 ||
+                    Converter().dateToString(achievement.datum) != "0001-01-01"){
+                    if(Converter().dateToString(achievement.datum) == "0001-01-01"){
+                        Toast.makeText(itemView.context,"An achievement was made!",Toast.LENGTH_SHORT).show()
+                        SqlDatabase.getDatabase(itemView.context).getSqlData.updAchievementDate(achievement.name, Date())
+                    }
+                    itemView.setOnClickListener{
+                        clickListener(achievement)
+                    }
+                    true
+                }else{
+                    false
                 }
-                itemView.setOnClickListener{
-                    clickListener(achievement)
-                }
-            }
 
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

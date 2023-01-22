@@ -9,7 +9,7 @@ class ExampleData(var context: Context) {
         if(SqlDatabase.getDatabase(context).getSqlData.selAktivitaet().isNotEmpty()){return}
 
         aktivitaet("Eat healthy")
-        aktivitaet("Handy Fasten")
+        aktivitaet("Reduce screen-time")
         aktivitaet("Running")
         aktivitaet("Studying")
         aktivitaet("Meditating")

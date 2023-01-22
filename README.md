@@ -1,4 +1,5 @@
-# AppProject
+# JustPlanIt
+
 Unsere App für das Kotlin Projekt
 :)
 

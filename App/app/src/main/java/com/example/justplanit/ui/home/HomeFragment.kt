@@ -14,7 +14,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentHomeBinding
+import com.squareup.moshi.Moshi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import java.util.Date
+
+
 
 class HomeFragment : Fragment() {
 
@@ -50,7 +57,34 @@ class HomeFragment : Fragment() {
 
         setAdapter(root.findViewById(R.id.home_recycler_view))
 
+        parseJson()
+
+        val motd: TextView = root.findViewById(R.id.home_motd)
+        adviceFromApi(
+            success = {
+                motd.text = it.advice
+            },
+            error = {
+                Log.w("Error", it)
+                motd.text = "Never run a marathon in Crocs."
+            }
+        )
+
         return root
+    }
+
+    private fun parseJson() {
+        val json = """
+            {
+                "slip":{
+                    "id":127,
+                    "advice":"When hugging, hug with both arms and apply reasonable, affectionate pressure."
+                }
+            }
+        """
+        val moshi = Moshi.Builder().build()
+        val jsonAdapter = moshi.adapter<Advice>(Advice::class.java)
+        val result = jsonAdapter.fromJson(json)
     }
 
     override fun onResume() {
@@ -73,5 +107,22 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun adviceFromApi(success: (lessonList: Slip) -> Unit, error: (errorMessage: String) -> Unit){
+        AdviceApi.retrofitService.getAdvice().enqueue(object : Callback<Slip?> {
+            override fun onResponse(call: Call<Slip?>, response: Response<Slip?>) {
+                val responseBody = response.body()
+                if (response.isSuccessful && responseBody != null) {
+                    success(responseBody)
+                } else {
+                    error("Something went wrong")
+                }
+            }
+
+            override fun onFailure(call: Call<Slip?>, t: Throwable) {
+                error("The call failed")
+            }
+        })
     }
 }

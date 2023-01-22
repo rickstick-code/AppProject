@@ -14,17 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.justplanit.*
 import com.example.justplanit.databinding.FragmentHomeBinding
-import com.squareup.moshi.Moshi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.util.Date
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 
 class HomeFragment : Fragment() {
 
+    var advice:Advice = Advice(Slip(0,"Some people would be better off if they took their own advice."))
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -57,35 +57,37 @@ class HomeFragment : Fragment() {
 
         setAdapter(root.findViewById(R.id.home_recycler_view))
 
-        parseJson()
-
-        val motd: TextView = root.findViewById(R.id.home_motd)
-        adviceFromApi(
-            success = {
-                motd.text = it.advice
-            },
-            error = {
-                Log.w("Error", it)
-                motd.text = "Never run a marathon in Crocs."
-            }
-        )
+        //Api
+        getApiAdvice()
+        root.findViewById<TextView>(R.id.home_motd).text = advice.slip.advice
 
         return root
     }
 
-    private fun parseJson() {
-        val json = """
-            {
-                "slip":{
-                    "id":127,
-                    "advice":"When hugging, hug with both arms and apply reasonable, affectionate pressure."
-                }
+    //Api call
+    private fun getApiAdvice() {
+        val retrofitBuilder = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://api.adviceslip.com")
+            .build()
+            .create(ApiInterface::class.java)
+
+        val retrofitData = retrofitBuilder.getAdvice()
+
+        retrofitData.enqueue(object : Callback<Advice?> {
+            override fun onResponse(call: Call<Advice?>, response: Response<Advice?>) {
+                val responseBody = response.body()!!
+                advice = responseBody
+                Log.e("Here is your advice",advice.slip.advice)
+                //TODO("Api call funktioniert und gibt advice aus, allerdings nicht beim ersten starten der app")
             }
-        """
-        val moshi = Moshi.Builder().build()
-        val jsonAdapter = moshi.adapter<Advice>(Advice::class.java)
-        val result = jsonAdapter.fromJson(json)
+
+            override fun onFailure(call: Call<Advice?>, t: Throwable) {
+                error("there was an error")
+            }
+        })
     }
+
 
     override fun onResume() {
         activity?.let { setAdapter(it.findViewById(R.id.home_recycler_view)) }
@@ -109,20 +111,5 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    fun adviceFromApi(success: (lessonList: Slip) -> Unit, error: (errorMessage: String) -> Unit){
-        AdviceApi.retrofitService.getAdvice().enqueue(object : Callback<Slip?> {
-            override fun onResponse(call: Call<Slip?>, response: Response<Slip?>) {
-                val responseBody = response.body()
-                if (response.isSuccessful && responseBody != null) {
-                    success(responseBody)
-                } else {
-                    error("Something went wrong")
-                }
-            }
 
-            override fun onFailure(call: Call<Slip?>, t: Throwable) {
-                error("The call failed")
-            }
-        })
-    }
 }

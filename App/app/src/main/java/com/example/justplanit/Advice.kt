@@ -5,6 +5,6 @@ data class Advice(
 )
 
 data class Slip(
-    val advice: String,
-    val id: Int
+    val id: Int,
+    val advice: String
 )

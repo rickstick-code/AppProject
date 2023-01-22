@@ -9,10 +9,10 @@
     <TextView
         android:id="@+id/home_motd"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="Message of the day here!"
+        android:text="Advice:"
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"

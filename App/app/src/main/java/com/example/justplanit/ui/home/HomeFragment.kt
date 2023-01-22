@@ -24,8 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
 
-    var advice:Advice = Advice(Slip(0,"Some people would be better off if they took their own advice."))
-
     private var _binding: FragmentHomeBinding? = null
 
     companion object {
@@ -59,7 +57,6 @@ class HomeFragment : Fragment() {
 
         //Api
         getApiAdvice()
-        root.findViewById<TextView>(R.id.home_motd).text = advice.slip.advice
 
         return root
     }
@@ -77,9 +74,7 @@ class HomeFragment : Fragment() {
         retrofitData.enqueue(object : Callback<Advice?> {
             override fun onResponse(call: Call<Advice?>, response: Response<Advice?>) {
                 val responseBody = response.body()!!
-                advice = responseBody
-                Log.e("Here is your advice",advice.slip.advice)
-                //TODO("Api call funktioniert und gibt advice aus, allerdings nicht beim ersten starten der app")
+                binding.root.findViewById<TextView>(R.id.home_motd).text = "Advice:\n"+responseBody.slip.advice
             }
 
             override fun onFailure(call: Call<Advice?>, t: Throwable) {

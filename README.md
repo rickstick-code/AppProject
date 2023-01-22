@@ -11,3 +11,6 @@ Mitglieder:
 
 User Documentation
 https://github.com/rickstick-code/AppProject/blob/main/JustPlanIt_UserDocumentation.pdf
+
+Install Instructions
+Just install, click and it will run
